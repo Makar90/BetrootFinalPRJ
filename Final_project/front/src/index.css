@@ -11,7 +11,7 @@
 }
 
 .container {
-    min-width: 670px;
+    min-width: 100vw;
 }
 
 h3 {
