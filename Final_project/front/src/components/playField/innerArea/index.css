@@ -1,0 +1,22 @@
+.inner-area {
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 50px;
+    padding: 50px;
+
+    grid-column: 2/11;
+    grid-row: 2/11;
+
+    background-image: url('../../../img/playFieldPicture.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.inner-area .card-common {
+    width: 30%;
+    height: 30%;
+}
