@@ -2,10 +2,10 @@
     padding: 20px;
     background-color: black;
     display: grid;
-    grid-template-columns: repeat(11, auto);
-    grid-template-rows: repeat(11, auto);
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(11, 1fr);
     grid-gap: 10px;
-    /* min-width: 670px; */
+    border-radius: 15px;
 }
 
 .play-field .card-common:nth-child(1) {
