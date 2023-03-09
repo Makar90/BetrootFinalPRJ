@@ -8,7 +8,7 @@ console.log(CardsData[0]);
 export default function PlayField(){
     let cards=[];
     for(let i=1; i<=39; i++){
-        cards.push(<CardCommon cardName={i} cardImage='#1' cardPrice='2500' cardOwner="Igor"/>)
+        cards.push(<CardCommon  key={i} cardName={i} cardImage='#1' cardPrice='2500' cardOwner="Igor"/>)
     }
 
     return(
