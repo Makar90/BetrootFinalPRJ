@@ -6,6 +6,7 @@
     grid-template-rows: repeat(11, 1fr);
     grid-gap: 10px;
     border-radius: 15px;
+    min-width: 100%;
 }
 
 .play-field .card-common:nth-child(1) {
