@@ -8,9 +8,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    justify-content: space-between;
+    gap: 15px;
     color: white;
-    font-size: 110%;
+    font-size: 10px;
     text-align: center;
 }
 
@@ -27,18 +28,35 @@
 
 .card-common__type {
     z-index: 1;
+    width: 100%;
+    min-height: 125px;
+    font-size: 45px;
+
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .card-common__name {
     z-index: 1;
+    width: 100%;
+    min-height: 70px;
+    font-size: 30px;
 }
 
 .card-common__image {
     z-index: 1;
+    width: 250px;
+    height: 200px;
 }
 
 .card-common__price {
     z-index: 1;
+    width: 100%;
+    font-size: 30px;
+    background-color: rgba(255, 255, 255, 0.4);
+
+    border-radius: 5px;
 }
 
 .card-common__owner {

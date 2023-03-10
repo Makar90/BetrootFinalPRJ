@@ -6,7 +6,7 @@ export const CardsData=[
         faceBackground:'/img/cards/front-cornersCard.jpg',
         type:'Старт',
         name:'',        
-        img:'../img/cards/media-toronto.jpg',
+        img:'../img/cards/icon-cornersCard-start.png',
         price:'',        
         
         backBackground:'/img/cards/back.jpg',

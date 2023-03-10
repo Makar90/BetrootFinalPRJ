@@ -34,7 +34,7 @@ export default function PlayField(){
                         cardName={item.name} 
                         cardImage={item.img} 
                         cardPrice={item.price}  
-                        cardOwner="Igor"/>
+                        cardOwner=""/>
                         )
                         }
 
