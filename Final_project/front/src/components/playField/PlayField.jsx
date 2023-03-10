@@ -16,12 +16,12 @@ export default function PlayField(){
     }
 
     
-    const cardAreaStyle = {
+   /*  const cardAreaStyle = {
         //backgroundImage: `url(${imaga})`, //`url(${CardsData[0].faceBackground})`,
         backgroundImage: `url('./img/cards/front-suplying.jpg')`,
         //backgroundImage:{require ('../../img/cards/front-media.jpg')},
         backgroundSize: 'cover',
-    };
+    }; */
 
     return(
         <div className='play-field'>
