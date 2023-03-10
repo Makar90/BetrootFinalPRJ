@@ -5,7 +5,7 @@ import CardCommon from '../playSteps/_cardCommon/CardCommon';
 import {CardsData} from '../../data/CardsData';
 
 
-import imaga from '../../img/cards/front-media.jpg';
+//import imaga from '../../img/cards/front-media.jpg';
 
 console.log(CardsData[0].faceBackground);
 
@@ -27,12 +27,12 @@ export default function PlayField(){
         <div className='play-field'>
             {CardsData.map((item, index) => <CardCommon 
                         key={item.id} 
-                        styles={{backgroundImage: `url(${item.faceBackground})`}}
+                        styles={{backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}
                         /* styles={cardAreaStyle}   */
                                                                    
                         cardType={item.type} 
                         cardName={item.name} 
-                        cardImage='#1' 
+                        cardImage={item.img} 
                         cardPrice={item.price}  
                         cardOwner="Igor"/>
                         )

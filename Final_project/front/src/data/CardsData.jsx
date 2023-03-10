@@ -1,4 +1,4 @@
-import '../img/cards/front-media.jpg'
+//import '../img/cards/front-media.jpg'
 
 export const CardsData=[
     {
@@ -20,7 +20,7 @@ export const CardsData=[
         faceBackground:'../img/cards/front-media.jpg',
         type:'ЗМІ',
         name:'Телебачення торонто',        
-        img:'../img/cards/media-toronto.jpg',
+        img:'../img/cards/icon-media-toronto.jpg',
         price:1500,        
         
         backBackground:'../img/cards/back.jpg',
@@ -37,7 +37,7 @@ export const CardsData=[
         faceBackground:'../img/cards/front-zsu.jpg',
         type:'ЗСУ',
         name:'АЗОВ',        
-        img:'../img/cards/zsu-azov.jpg',
+        img:'../img/cards/icon-zsu-azov.png',
         price:2000,        
         
         backBackground:'../img/cards/back.jpg',
