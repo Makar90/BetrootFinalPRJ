@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    min-width: 100%;
+}
+
 #root {
     min-height: 100vh;
     min-width: 100%;

@@ -28,7 +28,7 @@
     z-index: 1;
     width: 100%;
     /* min-height: 125px; */
-    font-size: 45px;
+    font-size: 25px;
 
     background-color: rgba(255, 255, 255, 0.4);
     padding: 5px;
@@ -40,20 +40,20 @@
     z-index: 1;
     width: 100%;
     /* min-height: 70px; */
-    font-size: 30px;
+    font-size: 15px;
 }
 
 .card-common__image {
     z-index: 1;
-    width: 250px;
-    height: 200px;
+    width: 100px;
+    height: 75px;
     margin-top: auto;
 }
 
 .card-common__price {
     z-index: 1;
     width: 100%;
-    font-size: 30px;
+    font-size: 20px;
     background-color: rgba(255, 255, 255, 0.6);
 
     border-radius: 5px;
