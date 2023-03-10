@@ -1,6 +1,7 @@
 .play-field {
     padding: 20px;
-    background-color: black;
+    /* background-color: black; */
+    background-image: url('../../img/playFieldBackground.jpg');
     display: grid;
     grid-template-columns: repeat(11, 1fr);
     grid-template-rows: repeat(11, 1fr);
