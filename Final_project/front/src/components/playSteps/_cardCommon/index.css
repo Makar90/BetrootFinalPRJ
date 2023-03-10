@@ -10,7 +10,7 @@
     justify-content: space-between;
     color: white;
     text-align: center;
-    /* font-size: 1vh; */
+    font-size: 1.5vh;
 }
 
 .card-common:after {
