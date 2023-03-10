@@ -4,7 +4,6 @@
     border-radius: 10px;
     background-color: white;
 
-    padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +27,7 @@
     z-index: 1;
     width: 100%;
     /* min-height: 125px; */
-    font-size: 25px;
+    font-size: 16px;
 
     background-color: rgba(255, 255, 255, 0.4);
     padding: 5px;
@@ -40,7 +39,7 @@
     z-index: 1;
     width: 100%;
     /* min-height: 70px; */
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .card-common__image {
@@ -53,7 +52,7 @@
 .card-common__price {
     z-index: 1;
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
     background-color: rgba(255, 255, 255, 0.6);
 
     border-radius: 5px;
