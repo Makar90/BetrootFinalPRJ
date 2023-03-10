@@ -3,14 +3,16 @@
     background-color: black;
     /*background-image: url('../../img/playFieldBackground.jpg');*/
     display: grid;
-    grid-template-columns: repeat(11, 8%);
-    grid-template-rows: repeat(11, 8%);
+    /* grid-template-columns: repeat(11, 8%);
+    grid-template-rows: repeat(11, 8%); */
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(11, 1fr);
     justify-content: center;
     align-content: center;
-    grid-gap: 1%;
+    grid-gap: 0.5%;
     border-radius: 15px;
-    width: 99vw;
-    height: 100vh;
+    /* width: 99vw;
+    height: 100vh; */
 }
 
 .play-field .card-common:nth-child(1) {
