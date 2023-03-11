@@ -11,7 +11,7 @@ console.log(CardsData[0].faceBackground);
 
 export default function PlayField(){
     let cards=[];
-    for(let i=12; i<=40; i++){
+    for(let i=41; i<=40; i++){
         cards.push(<CardCommon  key={i+1} cardName={i} cardImage='#1' cardPrice='2500' cardOwner="Igor"/>)
     }
 
