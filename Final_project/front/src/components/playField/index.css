@@ -6,10 +6,6 @@
     display: grid;
     grid-template-columns: repeat(11, 8%);
     grid-template-rows: repeat(11, 1fr);
-    /* grid-template-columns: repeat(11, 1fr);
-    grid-template-rows: repeat(11, 1fr); */
-    /* grid-template-columns: repeat(11, auto);
-    grid-template-rows: repeat(11, auto); */
     justify-content: center;
     align-content: center;
     /* grid-gap: 0.5%; */
