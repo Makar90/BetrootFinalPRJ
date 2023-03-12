@@ -84,7 +84,7 @@ export const CardsData=[
         faceBackground:'../img/cards/front-humanitaryHelp.jpg',
         type:'Гуманітарна допомога',
         name:'Західна Україна',        
-        img:'../img/cards/icon-humanitaryHelp.png',
+        img:'../img/cards/icon-humanitaryHelp-west.png',
         price:1000,        
         
         backBackground:'../img/cards/back.jpg',
@@ -260,7 +260,7 @@ export const CardsData=[
         faceBackground:'../img/cards/front-humanitaryHelp.jpg',
         type:'Гуманітарна допомога',
         name:'Південна Україна',        
-        img:'../img/cards/icon-humanitaryHelp.png',
+        img:'../img/cards/icon-humanitaryHelp-south.png',
         price:1000,        
         
         backBackground:'../img/cards/back.jpg',
@@ -386,7 +386,7 @@ export const CardsData=[
         faceBackground:'../img/cards/front-humanitaryHelp.jpg',
         type:'Гуманітарна допомога',
         name:'Північна',        
-        img:'../img/cards/icon-humanitaryHelp.png',
+        img:'../img/cards/icon-humanitaryHelp-north.png',
         price:1000,        
         
         backBackground:'../img/cards/back.jpg',
@@ -576,7 +576,7 @@ export const CardsData=[
         faceBackground:'../img/cards/front-humanitaryHelp.jpg',
         type:'Гуманітарна допомога',
         name:'Східна Україна',        
-        img:'../img/cards/icon-humanitaryHelp.png',
+        img:'../img/cards/icon-humanitaryHelp-east.png',
         price:1000,        
         
         backBackground:'../img/cards/back.jpg',

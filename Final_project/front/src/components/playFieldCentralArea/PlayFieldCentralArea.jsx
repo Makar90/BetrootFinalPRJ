@@ -1,7 +1,7 @@
 import './index.css';
-import CardCommon from '../../playSteps/_cardCommon/CardCommon';
+import CardCommon from '../playSteps/_cardCommon/CardCommon';
 
-export default function InnerArea(){
+export default function PlayFieldCentralArea(){
     return(
         <div className='inner-area'>
             <CardCommon/>

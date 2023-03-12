@@ -16,6 +16,7 @@
     /* max-width: 1150px; */
     max-width: 1600px;
     margin: 0 auto;
+    position: relative;
 }
 
 .play-field .card-common:nth-child(1) {
