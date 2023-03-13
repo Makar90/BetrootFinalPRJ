@@ -1,4 +1,5 @@
 import React, { useState/* , useEffect */ } from 'react'
+import InputColor from 'react-input-color';
 
 import './index.css';
 
@@ -7,6 +8,12 @@ import './index.css';
 
 export default function StartGame(){
     const [PlayersSettingsFields, setPlayersSettingsFields] = useState();
+    const [color, setColor] = React.useState({});
+
+    function getrandomColorHEX () {
+        const randomColor = Math.floor(Math.random()*16777215).toString(16);
+        return randomColor;
+      }
 
     function createFieldsPlayersNames(event){
         let fieldsNames=[]
@@ -24,15 +31,26 @@ export default function StartGame(){
                             placeholder="name">
                     </input>
 
-                    <label className="set-player__player-color"
+                    {/* <label className="set-player__player-color"
                             htmlFor={`player-color${i+1}`}>
                         Оберіть колір
-                    </label>
-                    <input className="set-player__player-color-label"
-                            type="color" 
-                            name={`player-color${i+1}`}
-                            id={`player-color${i+1}`}
-                            value="#e66465"/>
+                    </label> */}
+
+                    <InputColor
+                        className="set-player__player-color-label"
+                        id={`player-color${i+1}`}
+                        initialValue={getrandomColorHEX()} /* "#5e72e4" */
+                        onChange={setColor}
+                        placement="right"/>
+                    {/* <div
+                        style={{
+                        width: 50,
+                        height: 50,
+                        marginTop: 20,
+                        backgroundColor: color.rgba,
+                        }}>
+                            54545
+                    </div> */}
                     
                 </div>)
         };   
@@ -40,6 +58,8 @@ export default function StartGame(){
         
         setPlayersSettingsFields(fieldsNames);
     };
+
+    console.log(color);
 
     console.log(PlayersSettingsFields);
 

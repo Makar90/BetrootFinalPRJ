@@ -577,7 +577,7 @@ export const CardsData=[
         type:'Гуманітарна допомога',
         name:'Східна Україна',        
         img:'../img/cards/icon-humanitaryHelp-east.png',
-        price:1000,        
+        price:1000,      
         
         backBackground:'../img/cards/back.jpg',
         priceSold:600,
