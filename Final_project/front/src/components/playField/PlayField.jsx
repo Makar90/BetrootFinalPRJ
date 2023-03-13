@@ -4,7 +4,7 @@ import PlayFieldCentralArea from '../playFieldCentralArea/PlayFieldCentralArea';
 import CardCommon from '../playSteps/_cardCommon/CardCommon';
 import {CardsData} from '../../data/CardsData';
 
-import StartGame from '../startGame/StartGame';
+import StartGame from '../startGameSettings/startGameSettings';
 
 
 //import imaga from '../../img/cards/front-media.jpg';
