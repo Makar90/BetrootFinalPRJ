@@ -7,7 +7,7 @@ import './index.css';
 
 export default function PlayerSettings(props){
     const [color, setColor] = useState({});
-    //console.log(color);
+    console.log(color);
     //console.log(color.initialValue);
     return(
         <div className='set-player'>

@@ -17,7 +17,7 @@ function goStart(){
 
 export default function PlayField(){
     let element = document.querySelector('.play-field');
-    //console.log(element); 
+    console.log(element); 
     //console.log({this:{style:{backgroundColor:'red'}}});
 
 
