@@ -9,16 +9,19 @@ import StartGame from '../startGameSettings/startGameSettings';
 
 //import imaga from '../../img/cards/front-media.jpg';
 
-console.log(CardsData[0].faceBackground);
+//console.log(CardsData[0].faceBackground);
 
-function Start(){
+function goStart(){
     alert('Qo');
 };
 
 export default function PlayField(){
     let element = document.querySelector('.play-field');
-    console.log(element); 
+    //console.log(element); 
+    //console.log({this:{style:{backgroundColor:'red'}}});
 
+
+    
 /*     let cards=[];
     for(let i=41; i<=40; i++){
         cards.push(<CardCommon  key={i+1} cardName={i} cardImage='#1' cardPrice='2500' cardOwner="Igor"/>)
@@ -46,27 +49,26 @@ export default function PlayField(){
         backgroundSize: 'cover',
     }; */
 
-    console.log({this:{style:{backgroundColor:'red'}}});
+    
 
     return(
         <div className='play-field'>
-            {CardsData.map((item, index) =>
-                        
-                        <CardCommon 
-                        key={item.id} 
-                        onclick={index===0 ? Start : undefined}
-                        //onmouseover={{this:{style:{borderColor:'green'}}}}
-                        styles={index===0 ? 
-                                {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain', borderColor:'red'} 
-                                : 
-                                {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}
-                        //styles={cardAreaStyle}                                      
-                        cardType={item.type} 
-                        cardName={item.name} 
-                        cardImage={item.img} 
-                        cardPrice={item.price}  
-                        cardOwner=""/>
-                        )            
+            {CardsData.map((item, index) =>                        
+                <CardCommon 
+                key={item.id} 
+                onclick={index===0 ? goStart : undefined}
+                //onmouseover={{this:{style:{borderColor:'green'}}}}
+                styles={index===0 ? 
+                        {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain', borderColor:'red'} 
+                        : 
+                        {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}
+                //styles={cardAreaStyle}                                      
+                cardType={item.type} 
+                cardName={item.name} 
+                cardImage={item.img} 
+                cardPrice={item.price}  
+                cardOwner=""/>
+                )            
             }
             {/* cards */}
             {/* cards2 */}

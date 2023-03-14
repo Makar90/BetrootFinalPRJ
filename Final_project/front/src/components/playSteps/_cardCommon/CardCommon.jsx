@@ -1,7 +1,7 @@
 import './index.css';
 
 export default function CardCommon(props){
-    return(<div className="card-common" 
+    return(<div className="card-common"
                 style={props.styles} 
                 onClick={props.onclick}
                 //onMouseOver="this.style.borderColor='red';"
