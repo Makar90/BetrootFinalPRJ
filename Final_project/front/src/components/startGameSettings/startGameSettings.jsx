@@ -1,68 +1,59 @@
 
 
-import React, { useState/* , useEffect */ } from 'react';
+import React, { useState} from 'react';
 
 import './index.css';
-import PlayerSettings from './playerSettings/PlayerSettings';
+import PlayerSettingsCard from './playerSettingsCard/PlayerSettingsCard';
 import OptionSettings from './optionSettings/OptionSettings';
+import {playersMinNum,playersMaxNum,bankMinSum,bankMaxSum, getrandomColorHEX, checkMinMaxPlayers} from '../../data/GlobalData'
 import {PlayersData} from '../../data/PlayersData';
+//import PlayField from '../playField/PlayField';
 
+function getPlayerSettingsCards (numPlayers){
+    let fieldsNames=[]
+    for (let i=0; i<numPlayers;i++){
+        fieldsNames.push(
+            <PlayerSettingsCard key={i+1} index={i+1} color={getrandomColorHEX ()}/>
+            )
+    };     
+    return fieldsNames;        
+}; 
 
 export default function StartGame(){
-    const [PlayersSettings, setPlayersSettings] = useState();
-    
-    function getPlayerSettings (numPlayers){
-        if(!numPlayers)
-            numPlayers=2;
-        let fieldsNames=[]
-        for (let i=0; i<numPlayers;i++){
-            fieldsNames.push(
-                <PlayerSettings key={i+1} index={i+1} color={getrandomColorHEX ()}/>
-                )
-        };     
-        setPlayersSettings(fieldsNames);
+    const [PlayersSettingsCards, setPlayersSettingsCards] = useState(getPlayerSettingsCards(playersMinNum));
 
-        function getrandomColorHEX () {
-            const randomColor = Math.floor(Math.random()*16777215).toString(16);
-            return randomColor;
-        }; 
-    };    
-
-    function updatePlayerSettings(event){
-        //console.log(event);
+    function updatePlayerSettingsCards(event){
         let numPlayers=event.target.value;
-        if (+numPlayers > 4 || +numPlayers<2){
-            alert('Тільки від 2 до 4 гравців'); 
-            numPlayers=2;
-            event.target.value=numPlayers;
+        if (!checkMinMaxPlayers(numPlayers)){ 
+            numPlayers=playersMinNum;
+            event.target.value=PlayersSettingsCards.length;
         } else{    
-        getPlayerSettings (numPlayers);
+            setPlayersSettingsCards(getPlayerSettingsCards (numPlayers));
         }
     };
 
-    function Start(){
+    function pressStartButton(){
         let elementStartGameSettings = document.querySelector('.start-game');
-        //elementStartGameSettings.style.visibility='hidden';
+        elementStartGameSettings.style.visibility='hidden';      
+        setPlayersData();
 
-        //let playersSettings=[];
-        //PlayersData=[];
-        let elementsPlayers= elementStartGameSettings.querySelectorAll('.set-player');
-        elementsPlayers.forEach((elementPlayer)=>{
-            let playerName = elementPlayer.querySelector('.set-player__player-name').value;
-            let elementPlayerColor = elementPlayer.querySelector('.set-player__player-color');
-            let playerColor = elementPlayerColor.querySelector('span').style.backgroundColor;
-            //console.log(playerName+ ' '+ playerColor);
-            let dataPlayer={
-                playerName:playerName,
-                playerColor:playerColor
-            };
-            //playersSettings.push(dataPlayer);  
-            PlayersData.push(dataPlayer);            
-            });  
-                  
-        console.log('---Start---PlayersData');
-        //console.log(playersSettings);
-        console.log(PlayersData);
+        function setPlayersData(){   
+            let elementsPlayersCards= elementStartGameSettings.querySelectorAll('.set-player');          
+            elementsPlayersCards.forEach((elementPlayer)=>{
+                let playerName = elementPlayer.querySelector('.set-player__player-name').value;
+                let elementPlayerColor = elementPlayer.querySelector('.set-player__player-color');
+                let playerColor = elementPlayerColor.querySelector('span').style.backgroundColor;
+                //console.log(playerName+ ' '+ playerColor);
+                let dataPlayer={
+                    playerName:playerName,
+                    playerColor:playerColor
+                }; 
+                PlayersData.push(dataPlayer);            
+                }); 
+            console.log('---Start---PlayersData');
+            console.log(PlayersData);            
+        }
+
     }
 
     return(
@@ -72,16 +63,16 @@ export default function StartGame(){
             <OptionSettings
                 OptionClassName='start-game__option'
                 CodeId='num-players' 
-                OptionName='Кількість гравців (max-4)'
+                OptionName={`Кількість гравців (max-${playersMaxNum})`}
                 OptionValueType='number'
-                OptionValue="0"
-                OptionValueMin="2"
-                OptionValueMax="4"
-                OptionValueOnChange={updatePlayerSettings}
+                OptionValue={playersMinNum}
+                OptionValueMin={playersMinNum}
+                OptionValueMax={playersMaxNum}
+                OptionValueOnChange={updatePlayerSettingsCards}
                 />
             
             <div className="start-game__players-settings">
-                {PlayersSettings}
+                {PlayersSettingsCards}
             </div>
 
             <OptionSettings
@@ -89,15 +80,15 @@ export default function StartGame(){
                 CodeId='total-money' 
                 OptionName='Банк'
                 OptionValueType='number'
-                OptionValue="8000"
-                OptionValueMin="8000"
-                OptionValueMax="16000"
+                OptionValue={bankMinSum}
+                OptionValueMin={bankMinSum}
+                OptionValueMax={bankMaxSum}
                 OptionValueOnChange=''
                 />
 
             <button className='start-game__button-start'
-                    onClick={Start}>
-                Start
+                    onClick={pressStartButton}>
+                Розпочати гру
             </button>
         </div>
         

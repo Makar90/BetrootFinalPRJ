@@ -5,7 +5,7 @@ import InputColor from 'react-input-color';
 import './index.css';
 
 
-export default function PlayerSettings(props){
+export default function PlayerSettingsCard(props){
     const [color, setColor] = useState({});
     console.log(color);
     //console.log(color.initialValue);

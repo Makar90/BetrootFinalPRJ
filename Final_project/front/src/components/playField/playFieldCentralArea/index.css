@@ -10,7 +10,7 @@
     grid-column: 2/11;
     grid-row: 2/11;
 
-    background-image: url('../../img/playFieldPicture2.jpg');
+    background-image: url('../../../img/playFieldPicture2.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
