@@ -19,7 +19,7 @@ function getPlayerSettingsCards (numPlayers){
     return fieldsNames;        
 }; 
 
-export default function StartGame(){
+export default function StartGame(props){
     const [PlayersSettingsCards, setPlayersSettingsCards] = useState(getPlayerSettingsCards(playersMinNum));
 
     function updatePlayerSettingsCards(event){
@@ -36,6 +36,7 @@ export default function StartGame(){
         let elementStartGameSettings = document.querySelector('.start-game');
         elementStartGameSettings.style.visibility='hidden';      
         setPlayersData();
+        props.showPlayFieldSteps();
 
         function setPlayersData(){   
             let elementsPlayersCards= elementStartGameSettings.querySelectorAll('.set-player');          

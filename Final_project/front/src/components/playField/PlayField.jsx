@@ -4,7 +4,7 @@ import './index.css';
 import PlayFieldCentralArea from './playFieldCentralArea/PlayFieldCentralArea';
 import CardCommon from './playSteps/_cardCommon/CardCommon';
 import {CardsData} from '../../data/CardsData';
-import StartGame from '../startGameSettings/startGameSettings';
+import StartGameSettings from '../startGameSettings/startGameSettings';
 
 //import imaga from '../../img/cards/front-media.jpg';
 
@@ -101,8 +101,8 @@ export default function PlayField(){
             {/* cards */}
             {/* cards2 */}
             <PlayFieldCentralArea/>
-            <StartGame/>
-            <button onClick={getplayFieldSteps}>TEST</button>
+            <StartGameSettings showPlayFieldSteps={getplayFieldSteps}/>
+            {/* <button onClick={getplayFieldSteps}>TEST</button> */}
         </div>
     );
 }
