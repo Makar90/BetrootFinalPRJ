@@ -1,14 +1,14 @@
-import Header from './common/header/Header';
+//import Header from './common/header/Header';
 import Main from './common/main/Main';
-import Footer from './common/footer/Footer';
+//import Footer from './common/footer/Footer';
 import './index.css';
 
 function App() {
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <Main />
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }

@@ -1,10 +1,7 @@
-
 import './index.css';
 import {PlayersData} from '../../../../data/PlayersData';
 
 export default function gameProcessInfo (props){
-    console.log('---------');
-    console.log(PlayersData);
     let playersCards=PlayersData.map((item, index)=>
         <div className="game-process-info__player"
                 key={index}
@@ -14,8 +11,8 @@ export default function gameProcessInfo (props){
         </div>
     ) 
     return(
-        <div className={`game-process-info${props.hidden ? " game-process-info--hidden": ''}`}>
-            <h3 className="game-process-info__game-budget">Банк гри: {props.gameBudget}$</h3>
+        <div className={`game-process-info${props.hidden ? " game-process-info--hidden": " game-process-info--noHidden"}`}>
+            <h3 className="game-process-info__game-budget">Банк: {props.gameBudget}$</h3>
             <div className="game-process-info__players-line">
                 {/* <div className="game-process-info__player">
                     <h4 className="game-process-info__player-name">Igor {props.playerName}</h4>

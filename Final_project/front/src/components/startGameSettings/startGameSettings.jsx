@@ -1,19 +1,19 @@
-
-
 import React, { useState} from 'react';
 
 import './index.css';
 import PlayerSettingsCard from './playerSettingsCard/PlayerSettingsCard';
 import OptionSettings from './optionSettings/OptionSettings';
-import {playersMinNum,playersMaxNum,bankMinSum,bankMaxSum, getrandomColorHEX, checkMinMaxPlayers} from '../../data/GlobalData'
+import {playersMinNum,playersMaxNum,
+        bankSum,bankMinSum,bankMaxSum,setBankSum,
+        getrandomColorHEX, 
+        checkMinMaxPlayers,
+        playerMoney,playerMaxMoney} from '../../data/GlobalData'
 import {PlayersData} from '../../data/PlayersData';
-import {TotalGameBudget} from '../../data/GameProcessData';
-//import PlayField from '../playField/PlayField';
+import {setTotalGameBudget} from '../../data/GameProcessData';
 
 
 export default function StartGame(props){
     const [PlayersSettingsCards, setPlayersSettingsCards] = useState(getPlayerSettingsCards(playersMinNum));
-    //const [totalBudget, settotalBudget]=useState;
 
     function getPlayerSettingsCards (numPlayers){
         let fieldsNames=[]
@@ -33,6 +33,7 @@ export default function StartGame(props){
         } else{    
             setPlayersSettingsCards(getPlayerSettingsCards (numPlayers));
         }
+        setTotalMoney();
     };
 
     function pressStartButton(){
@@ -40,23 +41,30 @@ export default function StartGame(props){
         elementStartGameSettings.style.visibility='hidden';   
         
         let elementGameBudget=elementStartGameSettings.querySelector('#total-money');
-        TotalGameBudget.push(elementGameBudget.value);
-        console.log(TotalGameBudget);
+        setTotalGameBudget(elementGameBudget.value);
 
         setPlayersData();
-        props.showPlayFieldSteps();
+        props.showPlayFieldSteps();//propsing function to here place for rerender steps on play field on playfield code file
+
+        /*let elementInnerArea = document.querySelector('.inner-area');
+        let elementGameProcessInfo = elementInnerArea.querySelector('.game-process-info');
+        elementGameProcessInfo.classList.remove("game-process-info--hidden"); */
+        let elementInnerAreaChildren = document.querySelector('.inner-area').childNodes;
+        elementInnerAreaChildren.forEach((item)=>{
+            item.style.visibility='visible';
+        });
 
         function setPlayersData(){   
-            let elementsPlayersCards= elementStartGameSettings.querySelectorAll('.set-player');          
+            let elementsPlayersCards= elementStartGameSettings.querySelectorAll('.set-player');         
             elementsPlayersCards.forEach((elementPlayer)=>{
                 let playerName = elementPlayer.querySelector('.set-player__player-name').value;
                 let elementPlayerColor = elementPlayer.querySelector('.set-player__player-color');
                 let playerColor = elementPlayerColor.querySelector('span').style.backgroundColor;
-                //console.log(playerName+ ' '+ playerColor);
+                let playerMoney=document.querySelector('#player-money').value; 
                 let dataPlayer={
                     playerName:playerName,
                     playerColor:playerColor,
-                    playerBudget:8000
+                    playerBudget:playerMoney
                 }; 
                 PlayersData.push(dataPlayer);            
                 }); 
@@ -64,6 +72,17 @@ export default function StartGame(props){
             console.log(PlayersData);            
         }
     }
+
+    function setTotalMoney(){
+        let elementNumPlayers=document.querySelector('#num-players');
+        let elementTotaMoney=document.querySelector('#total-money');
+        let elementPlayerMoney=document.querySelector('#player-money');        
+        elementTotaMoney.value=(bankSum-elementPlayerMoney.value*elementNumPlayers.value) >=0? bankSum-elementPlayerMoney.value*elementNumPlayers.value: 0 ;
+    };   
+
+    function onChangeTotalMoney(event){
+        setBankSum(event.target.value);
+    };   
 
     return(
         <div className="start-game">
@@ -89,11 +108,22 @@ export default function StartGame(props){
                 CodeId='total-money' 
                 OptionName='Банк'
                 OptionValueType='number'
-                OptionValue={bankMinSum}
+                OptionValue={bankSum-(playerMoney*playersMinNum)}
                 OptionValueMin={bankMinSum}
                 OptionValueMax={bankMaxSum}
-                OptionValueOnChange=''
+                OptionValueOnChange={onChangeTotalMoney}
                 />
+
+            <OptionSettings
+                OptionClassName='start-game__option'
+                CodeId='player-money' 
+                OptionName='Бюджет на гравця'
+                OptionValueType='number'
+                OptionValue={playerMoney}
+                OptionValueMin={playerMoney}
+                OptionValueMax={playerMaxMoney}
+                OptionValueOnChange={setTotalMoney}
+                />      
 
             <button className='start-game__button-start'
                     onClick={pressStartButton}>

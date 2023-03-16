@@ -9,7 +9,8 @@ export default function PlayFieldCentralArea(){
         <div className='inner-area'>
             {/* <CardCommon visibility={true}/>
             <CardCommon visibility={true}/> */}
-            <GameProcessInfo hidden={false} gameBudget={TotalGameBudget[0]}/>
+            <GameProcessInfo hidden={true} 
+                            gameBudget={TotalGameBudget}/>
         </div>
     );
 }

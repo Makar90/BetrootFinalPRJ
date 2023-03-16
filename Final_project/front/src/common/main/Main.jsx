@@ -7,7 +7,7 @@ export default function Main() {
         <main>
             <div className="container">
                 <>
-                <h1>Main</h1>
+                {/* <h1>Main</h1> */}
                 <PlayField/>
                 </>
             </div>

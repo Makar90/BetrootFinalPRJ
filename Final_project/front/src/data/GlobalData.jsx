@@ -1,8 +1,17 @@
 export let playersMinNum=2;
-export let playersMaxNum=5;
+export let playersMaxNum=6;
 
-export let bankMinSum=8000;
-export let bankMaxSum=16000;
+export let bankSum= 194500;
+export let bankMaxSum=300000;
+export let bankMinSum=100000;
+
+
+export let playerMoney=8000;
+export let playerMaxMoney=(bankMaxSum/2)/playersMaxNum;
+
+export function setBankSum(value){
+    bankSum=value;  
+};
 
 
 
