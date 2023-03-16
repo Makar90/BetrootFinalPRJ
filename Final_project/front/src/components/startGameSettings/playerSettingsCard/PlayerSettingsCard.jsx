@@ -3,12 +3,15 @@ import React, { useState/* , useEffect */ } from 'react'
 import InputColor from 'react-input-color';
 
 import './index.css';
+//import {getrandomColorHEX} from '../../../data/GlobalData'
 
+//let colore=getrandomColorHEX();
 
 export default function PlayerSettingsCard(props){
-    const [color, setColor] = useState({});
-    console.log(color);
-    //console.log(color.initialValue);
+    const [Color, setColor] = useState(/* getrandomColorHEX() */);
+    console.log(Color);
+    //let colore=getrandomColorHEX();
+
     return(
         <div className='set-player'>
             <label className="set-player__player-name-label"                             
@@ -21,10 +24,10 @@ export default function PlayerSettingsCard(props){
                     type='text' 
                     placeholder="name">
             </input>
-
             <InputColor
                 className="set-player__player-color"
                 initialValue={props.color}
+                /* initialValue={colore} */
                 onChange={setColor}
                 placement="right"/>
             {/* <div
@@ -35,7 +38,7 @@ export default function PlayerSettingsCard(props){
                 backgroundColor: color.rgba,
                 }}>
                     54545
-            </div> */}                    
+            </div> */}                  
         </div>
     )
 }

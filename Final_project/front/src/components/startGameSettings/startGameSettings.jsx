@@ -7,20 +7,23 @@ import PlayerSettingsCard from './playerSettingsCard/PlayerSettingsCard';
 import OptionSettings from './optionSettings/OptionSettings';
 import {playersMinNum,playersMaxNum,bankMinSum,bankMaxSum, getrandomColorHEX, checkMinMaxPlayers} from '../../data/GlobalData'
 import {PlayersData} from '../../data/PlayersData';
+import {TotalGameBudget} from '../../data/GameProcessData';
 //import PlayField from '../playField/PlayField';
 
-function getPlayerSettingsCards (numPlayers){
-    let fieldsNames=[]
-    for (let i=0; i<numPlayers;i++){
-        fieldsNames.push(
-            <PlayerSettingsCard key={i+1} index={i+1} color={getrandomColorHEX ()}/>
-            )
-    };     
-    return fieldsNames;        
-}; 
 
 export default function StartGame(props){
     const [PlayersSettingsCards, setPlayersSettingsCards] = useState(getPlayerSettingsCards(playersMinNum));
+    //const [totalBudget, settotalBudget]=useState;
+
+    function getPlayerSettingsCards (numPlayers){
+        let fieldsNames=[]
+        for (let i=0; i<numPlayers;i++){
+            fieldsNames.push(
+                <PlayerSettingsCard key={i+1} index={i+1} color={getrandomColorHEX()}/>
+                )
+        };     
+        return fieldsNames;        
+    }; 
 
     function updatePlayerSettingsCards(event){
         let numPlayers=event.target.value;
@@ -34,7 +37,12 @@ export default function StartGame(props){
 
     function pressStartButton(){
         let elementStartGameSettings = document.querySelector('.start-game');
-        elementStartGameSettings.style.visibility='hidden';      
+        elementStartGameSettings.style.visibility='hidden';   
+        
+        let elementGameBudget=elementStartGameSettings.querySelector('#total-money');
+        TotalGameBudget.push(elementGameBudget.value);
+        console.log(TotalGameBudget);
+
         setPlayersData();
         props.showPlayFieldSteps();
 
@@ -47,14 +55,14 @@ export default function StartGame(props){
                 //console.log(playerName+ ' '+ playerColor);
                 let dataPlayer={
                     playerName:playerName,
-                    playerColor:playerColor
+                    playerColor:playerColor,
+                    playerBudget:8000
                 }; 
                 PlayersData.push(dataPlayer);            
                 }); 
             console.log('---Start---PlayersData');
             console.log(PlayersData);            
         }
-
     }
 
     return(

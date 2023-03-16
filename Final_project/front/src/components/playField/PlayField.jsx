@@ -2,41 +2,24 @@ import React, { useState} from 'react';
 
 import './index.css';
 import PlayFieldCentralArea from './playFieldCentralArea/PlayFieldCentralArea';
-import CardCommon from './playSteps/_cardCommon/CardCommon';
+import PlayFieldStepsCard from './playSteps/playFieldStepsCard/PlayFieldStepsCard';
 import {CardsData} from '../../data/CardsData';
 import StartGameSettings from '../startGameSettings/startGameSettings';
 
 //import imaga from '../../img/cards/front-media.jpg';
 
-function goStart(){
+function goStartSet(){
     let StartPanel= document.querySelector('.start-game');
     StartPanel.style.visibility='visible';
-};
-
-export default function PlayField(){
+}; 
+ 
+export default function PlayField(){ 
     //console.log({this:{style:{backgroundColor:'red'}}});
-
-/*     let cards=[];
+    /*     let cards=[];
     for(let i=41; i<=40; i++){
         cards.push(<CardCommon  key={i+1} cardName={i} cardImage='#1' cardPrice='2500' cardOwner="Igor"/>)
-    } */
-
-/*     let cards2=CardsData.map((item, index) =>{
-        return(
-            <CardCommon 
-            key={item.id} 
-            onClick={index===0 && Start}
-            styles={{backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}
-            //styles={cardAreaStyle}                                      
-            cardType={item.type} 
-            cardName={item.name} 
-            cardImage={item.img} 
-            cardPrice={item.price}  
-            cardOwner=""/>
-        )
-    }) */
-                        
-   /*  const cardAreaStyle = {
+    } */              
+    /*  const cardAreaStyle = {
         //backgroundImage: `url(${imaga})`, //`url(${CardsData[0].faceBackground})`,
         backgroundImage: `url('./img/cards/front-suplying.jpg')`,
         //backgroundImage:{require ('../../img/cards/front-media.jpg')},
@@ -45,63 +28,46 @@ export default function PlayField(){
     
 
     const [playFieldSteps, setplayFieldSteps] = useState(
-    /* let playFieldSteps= */CardsData.map((item, index) =>         
-               <CardCommon 
+        CardsData.map((item, index) =>         
+            <PlayFieldStepsCard 
+            key={item.id} 
+            onclickFunction={index===0 ? goStartSet : undefined}
+            visibility={index===0 ? true : false}
+            styles={index===0 ? 
+                    {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain', borderColor:'red'} 
+                    : 
+                    {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}                                     
+            cardType={item.type} 
+            cardName={item.name}  
+            cardImage={item.img} 
+            cardPrice={item.price}  
+            cardOwner=""/>
+        )      
+    );           
+
+    function renderPlayFieldStepsForProcess(){      
+        setplayFieldSteps(CardsData.map((item, index) =>    
+            <PlayFieldStepsCard 
                 key={item.id} 
-                onclick={index===0 ? goStart : undefined}
-                visibility={index===0 ? true : false}
-                //onmouseover={{this:{style:{borderColor:'green'}}}}
-                styles={index===0 ? 
-                        {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain', borderColor:'red'} 
-                        : 
-                        {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}
-                //styles={cardAreaStyle}                                      
+                onclickFunction={undefined}
+                visibility={index===0 ? true : true}
+                styles={{backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}                                     
                 cardType={item.type} 
                 cardName={item.name} 
                 cardImage={item.img} 
                 cardPrice={item.price}  
-                cardOwner=""/>
-                )      
-    );
-   
-
-    function getplayFieldSteps(){      
-        setplayFieldSteps(CardsData.map((item, index) =>/*{
-                setTimeout(() => {
-                    console.log(playFieldSteps);
-                    return(  */        
-                        <CardCommon 
-                            key={item.id} 
-                            onclick={index===0 ? goStart : undefined}
-                            visibility={index===0 ? true : true}
-                            //onmouseover={{this:{style:{borderColor:'green'}}}}
-                            styles={index===0 ? 
-                                    {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain', borderColor:'red'} 
-                                    : 
-                                    {backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}
-                            //styles={cardAreaStyle}                                      
-                            cardType={item.type} 
-                            cardName={item.name} 
-                            cardImage={item.img} 
-                            cardPrice={item.price}  
-                            cardOwner=""
-                        />
-                    /*)
-                    
-                }, 1000*index)
-            }*/)
-        );
-        
+                cardOwner=""
+            />
+        ));
     }
     
 
     return(
         <div className='play-field'>            
             {playFieldSteps}
-            {/* cards */}
-            {/* cards2 */}
             <PlayFieldCentralArea/>
-            <StartGameSettings showPlayFieldSteps={getplayFieldSteps}/>
+            <StartGameSettings showPlayFieldSteps={renderPlayFieldStepsForProcess}/>
+            {/* cards */}
             {/* <button onClick={getplayFieldSteps}>TEST</button> */}
         </div>
     );

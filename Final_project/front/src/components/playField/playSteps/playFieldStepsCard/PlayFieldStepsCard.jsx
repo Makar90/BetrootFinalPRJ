@@ -1,13 +1,9 @@
 import './index.css';
 
-export default function CardCommon(props){
-    return(<div className={`card-common ${props.visibility ? undefined:'card-common--hidden'}`}
+export default function PlayFieldStepsCard(props){
+    return(<div className={`card-common ${props.visibility ? '':'card-common--hidden'}`}
                 style={props.styles} 
-                onClick={props.onclick}
-                //onMouseOver="this.style.borderColor='red';"
-                //onMouseOver={{this:{style:{borderColor:'green'}}}}
-                //onMouseOver={this.style.borderColor='red'}
-                //onMouseOver={props.onmouseover}
+                onClick={props.onclickFunction}
                 >
         <h4 className="card-common__type">{props.cardType}</h4>
         <h5 className="card-common__name">{props.cardName}</h5>
@@ -16,4 +12,4 @@ export default function CardCommon(props){
         <h5 className="card-common__owner">{props.cardOwner}</h5>
     </div>
     );
-}
+} 
