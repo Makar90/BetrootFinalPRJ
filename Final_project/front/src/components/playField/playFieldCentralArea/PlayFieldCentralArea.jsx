@@ -1,7 +1,7 @@
 import './index.css';
-//import CardCommon from '../playSteps/playFieldStepsCard/PlayFieldStepsCard'
+
 import GameProcessInfo from './gameProcessInfo/GameProcessInfo';
-import {TotalGameBudget} from '../../../data/GameProcessData';
+import {bankSum} from '../../../data/GlobalData';
 
 
 export default function PlayFieldCentralArea(){
@@ -10,7 +10,7 @@ export default function PlayFieldCentralArea(){
             {/* <CardCommon visibility={true}/>
             <CardCommon visibility={true}/> */}
             <GameProcessInfo hidden={true} 
-                            gameBudget={TotalGameBudget}/>
+                            gameBudget={bankSum}/>
         </div>
     );
 }

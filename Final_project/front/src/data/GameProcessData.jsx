@@ -1,6 +1,6 @@
-export let TotalGameBudget;
+/* export let TotalGameBudget;
 
 
 export function setTotalGameBudget(value){
     TotalGameBudget=value;
-}
+} */

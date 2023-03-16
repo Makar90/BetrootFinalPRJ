@@ -8,10 +8,6 @@
     visibility: hidden;
 }
 
-.game-process-info--noHidden {
-    visibility: visible;
-}
-
 .game-process-info__game-budget {
     text-align: center;
     text-transform: uppercase;

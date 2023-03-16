@@ -9,7 +9,6 @@ import {playersMinNum,playersMaxNum,
         checkMinMaxPlayers,
         playerMoney,playerMaxMoney} from '../../data/GlobalData'
 import {PlayersData} from '../../data/PlayersData';
-import {setTotalGameBudget} from '../../data/GameProcessData';
 
 
 export default function StartGame(props){
@@ -41,7 +40,7 @@ export default function StartGame(props){
         elementStartGameSettings.style.visibility='hidden';   
         
         let elementGameBudget=elementStartGameSettings.querySelector('#total-money');
-        setTotalGameBudget(elementGameBudget.value);
+        setBankSum(elementGameBudget.value);
 
         setPlayersData();
         props.showPlayFieldSteps();//propsing function to here place for rerender steps on play field on playfield code file

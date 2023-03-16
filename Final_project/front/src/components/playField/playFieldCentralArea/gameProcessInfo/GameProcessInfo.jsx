@@ -11,7 +11,7 @@ export default function gameProcessInfo (props){
         </div>
     ) 
     return(
-        <div className={`game-process-info${props.hidden ? " game-process-info--hidden": " game-process-info--noHidden"}`}>
+        <div className={`game-process-info${props.hidden ? " game-process-info--hidden": ""}`}>
             <h3 className="game-process-info__game-budget">Банк: {props.gameBudget}$</h3>
             <div className="game-process-info__players-line">
                 {/* <div className="game-process-info__player">
