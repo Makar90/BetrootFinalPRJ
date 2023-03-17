@@ -5,7 +5,7 @@
 }
 
 .game-process-info--hidden {
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 .game-process-info__game-budget {

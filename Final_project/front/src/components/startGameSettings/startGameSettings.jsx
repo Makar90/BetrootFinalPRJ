@@ -67,8 +67,8 @@ export default function StartGame(props){
                 }; 
                 PlayersData.push(dataPlayer);            
                 }); 
-            console.log('---Start---PlayersData');
-            console.log(PlayersData);            
+            //console.log('---Start---PlayersData');
+            //console.log(PlayersData);            
         }
     }
 

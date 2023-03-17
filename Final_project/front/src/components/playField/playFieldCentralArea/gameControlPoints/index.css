@@ -1,0 +1,16 @@
+.game-control-poins {
+    width: 100%;
+    background-color: rgb(128, 128, 128, 0.8);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.game-control-poins__play-cubes {
+    display: flex;
+    gap: 5px;
+    border: 3px solid white;
+    border-radius: 10px;
+    padding: 10px;
+}

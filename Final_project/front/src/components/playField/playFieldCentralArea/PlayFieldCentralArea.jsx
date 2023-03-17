@@ -1,6 +1,7 @@
 import './index.css';
 
 import GameProcessInfo from './gameProcessInfo/GameProcessInfo';
+import GameControlPoints from './gameControlPoints/GameControlPoints';
 import {bankSum} from '../../../data/GlobalData';
 
 
@@ -11,6 +12,7 @@ export default function PlayFieldCentralArea(){
             <CardCommon visibility={true}/> */}
             <GameProcessInfo hidden={true} 
                             gameBudget={bankSum}/>
+            <GameControlPoints/>
         </div>
     );
 }
