@@ -5,8 +5,8 @@ import PlayFieldCentralArea from './playFieldCentralArea/PlayFieldCentralArea';
 import PlayFieldStepsCard from './playSteps/playFieldStepsCard/PlayFieldStepsCard';
 import {CardsData} from '../../data/CardsData';
 import StartGameSettings from '../startGameSettings/startGameSettings';
-import {PlayersData, 
-        getCurrentPlayerPosition, setCurrentPlayerPosition,
+import {/* PlayersData,  */
+        getCurrentPlayerPosition, /* setCurrentPlayerPosition, */
         getCurrentPlayerColor} from '../../data/PlayersData';
 
 //import imaga from '../../img/cards/front-media.jpg';
@@ -49,11 +49,11 @@ export default function PlayField(){
     );           
 
     function renderPlayFieldStepsForProcess(){  
-        console.log(getCurrentPlayerPosition());  
+        /* console.log(getCurrentPlayerPosition());  
         setCurrentPlayerPosition(5);
         console.log('PlayersData'); 
         console.log(PlayersData); 
-        console.log(getCurrentPlayerPosition()); 
+        console.log(getCurrentPlayerPosition());  */
 
 
         setplayFieldSteps(CardsData.map((item, index) =>    

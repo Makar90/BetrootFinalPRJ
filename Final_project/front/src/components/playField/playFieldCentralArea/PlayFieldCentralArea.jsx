@@ -47,7 +47,7 @@ const [ElementGameProcessInfo, setElementGameProcessInfo] = useState(getGameProc
         <GameControlPoints 
             hidden={true}
             reRenderPlayFieldSteps={props.reRenderPlayFieldSteps}
-            reRenderGameProcessInfo={renderGameProcessInfo}
+            reRenderGameProcessInfo_Players={renderGameProcessInfo}
             />
         </div>
     );
