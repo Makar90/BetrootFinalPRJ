@@ -2,10 +2,31 @@ import './index.css';
 import {PlayersData} from '../../../../data/PlayersData';
 
 export default function gameProcessInfo (props){
+
+/*     function even(props.renderPlayerFunction) (){
+
+    } */
+    
+    function renderPlayerFunction(){
+        console.log('renderPlayerFunction');
+        console.log(props.renderPlayerFunctionName);
+    };
+
+
+
     let playersCards=PlayersData.map((item, index)=>
         <div className="game-process-info__player"
                 key={index}
-                style={{backgroundColor:item.playerColor, width:`${(100/PlayersData.length)-2}%`}}>
+                /* style={{backgroundColor:item.playerColor, width:`${(100/PlayersData.length)-2}%`}}  */
+                style={index=== props.сurrentPlayer ? 
+                    {backgroundColor:item.playerColor, 
+                    width:`${(100/PlayersData.length)-2}%`,
+                    borderColor:'rgb(214, 229, 124)'}
+                    : 
+                    {backgroundColor:item.playerColor, 
+                    width:`${(100/PlayersData.length)-2}%`}}
+                onClick={renderPlayerFunction}
+                >
             <h4 className="game-process-info__player-name">{item.playerName}</h4>
             <h5 className="game-process-info__player-budget">{item.playerBudget}$</h5>
         </div>

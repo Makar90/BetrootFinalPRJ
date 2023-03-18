@@ -77,6 +77,10 @@ export default function GameControlPoints(props){
         }, delay);         
     }
 
+    //props.reRenderGameProcessInfo();
+    //props.reRenderPlayFieldSteps();
+    
+
     return(
         <div className={`game-control-poins${props.hidden ? " game-control-poins--hidden": ""}`}>
             <button className="game-control-poins__item"

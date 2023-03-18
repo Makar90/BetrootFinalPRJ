@@ -5,6 +5,9 @@ import PlayFieldCentralArea from './playFieldCentralArea/PlayFieldCentralArea';
 import PlayFieldStepsCard from './playSteps/playFieldStepsCard/PlayFieldStepsCard';
 import {CardsData} from '../../data/CardsData';
 import StartGameSettings from '../startGameSettings/startGameSettings';
+import {PlayersData, 
+        getCurrentPlayerPosition, setCurrentPlayerPosition,
+        getCurrentPlayerColor} from '../../data/PlayersData';
 
 //import imaga from '../../img/cards/front-media.jpg';
 
@@ -45,13 +48,27 @@ export default function PlayField(){
         )      
     );           
 
-    function renderPlayFieldStepsForProcess(){      
+    function renderPlayFieldStepsForProcess(){  
+        console.log(getCurrentPlayerPosition());  
+        setCurrentPlayerPosition(5);
+        console.log('PlayersData'); 
+        console.log(PlayersData); 
+        console.log(getCurrentPlayerPosition()); 
+
+
         setplayFieldSteps(CardsData.map((item, index) =>    
             <PlayFieldStepsCard 
                 key={item.id} 
                 onclickFunction={undefined}
                 visibility={index===0 ? true : true}
-                styles={{backgroundImage: `url(${item.faceBackground})`, backgroundSize:'contain'}}                                     
+                styles={index===getCurrentPlayerPosition() ? 
+                        {backgroundImage: `url(${item.faceBackground})`, 
+                        backgroundSize:'contain', 
+                        borderColor:`${getCurrentPlayerColor()}`} 
+                        : 
+                        {backgroundImage: `url(${item.faceBackground})`, 
+                        backgroundSize:'contain'}
+                    }                                      
                 cardType={item.type} 
                 cardName={item.name} 
                 cardImage={item.img} 
@@ -65,8 +82,8 @@ export default function PlayField(){
     return(
         <div className='play-field'>            
             {playFieldSteps}
-            <PlayFieldCentralArea/>
-            <StartGameSettings showPlayFieldSteps={renderPlayFieldStepsForProcess}/>
+            <PlayFieldCentralArea reRenderPlayFieldSteps={renderPlayFieldStepsForProcess}/>
+            <StartGameSettings reRenderPlayFieldSteps={renderPlayFieldStepsForProcess}/>
             {/* cards */}
             {/* <button onClick={getplayFieldSteps}>TEST</button> */}
         </div>

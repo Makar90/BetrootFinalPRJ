@@ -43,7 +43,7 @@ export default function StartGame(props){
         setBankSum(elementGameBudget.value);
 
         setPlayersData();
-        props.showPlayFieldSteps();//propsing function to here place for rerender steps on play field on playfield code file
+        props.reRenderPlayFieldSteps();//propsing function to here place for rerender steps on play field on playfield code file
 
         /*let elementInnerArea = document.querySelector('.inner-area');
         let elementGameProcessInfo = elementInnerArea.querySelector('.game-process-info');
@@ -55,7 +55,7 @@ export default function StartGame(props){
 
         function setPlayersData(){   
             let elementsPlayersCards= elementStartGameSettings.querySelectorAll('.set-player');         
-            elementsPlayersCards.forEach((elementPlayer)=>{
+            elementsPlayersCards.forEach((elementPlayer, elementItem)=>{
                 let playerName = elementPlayer.querySelector('.set-player__player-name').value;
                 let elementPlayerColor = elementPlayer.querySelector('.set-player__player-color');
                 let playerColor = elementPlayerColor.querySelector('span').style.backgroundColor;
@@ -63,12 +63,15 @@ export default function StartGame(props){
                 let dataPlayer={
                     playerName:playerName,
                     playerColor:playerColor,
-                    playerBudget:playerMoney
+                    playerBudget:playerMoney,
+                    playerPlayFieldPosition:0,
+                    playetCurrentMove:elementItem===0 ? true:false,
+                    playerActive:true
                 }; 
                 PlayersData.push(dataPlayer);            
                 }); 
-            //console.log('---Start---PlayersData');
-            //console.log(PlayersData);            
+            console.log('---Start---PlayersData');
+            console.log(PlayersData);            
         }
     }
 
