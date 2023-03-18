@@ -12,7 +12,7 @@ export default function PlayFieldCentralArea(){
             <CardCommon visibility={true}/> */}
             <GameProcessInfo hidden={true} 
                             gameBudget={bankSum}/>
-            <GameControlPoints/>
+            <GameControlPoints hidden={true}/>
         </div>
     );
 }

@@ -6,14 +6,24 @@ import { useState } from "react";
 
 
 export default function GameControlPoints(props){
-    const [PlayCube1, setPlayCube1] = useState(/* getPlayCube('setCube1') */);
-    const [PlayCube2, setPlayCube2] = useState(/* getPlayCube('setCube2') */);
+    const [PlayCube1, setPlayCube1] = useState(getPlayCube('start'));
+    const [PlayCube2, setPlayCube2] = useState(getPlayCube('start'));
 
 
-    function getPlayCube(comm){
-        let RandValue=Math.floor(Math.random() * (6 - 1) + 1);
+    function getPlayCube(cubeValue){
+        switch (cubeValue) {
+            case 'start':
+                cubeValue=0;
+                break;
+            case undefined:
+                cubeValue=Math.floor(Math.random() * (6 - 1) + 1);
+                break;
+            default:
+                break;
+        };
+        
         let cubeImage='';
-        switch (RandValue) {
+        switch (cubeValue) {
             case 1:
                 cubeImage='../img/cube-sides/cube-1.png';
                 break;
@@ -35,15 +45,15 @@ export default function GameControlPoints(props){
             default:
                 cubeImage='../img/cube-sides/cube-error.png';
           }
+
         let playcube=(
             <div className='game-control-poins__play-cube'
-                    cubevalue={RandValue}
-                    style={{backgroundImage:`url(${cubeImage})`, backgroundSize:'contain', backgroundColor:'gray', width:'50px', height:'50px'}}>
-            </div>);
-        //console.log(`${comm} = ${RandValue}` );
+                    cubevalue={cubeValue}
+                    style={{backgroundImage:`url(${cubeImage})`}}>
+            </div>
+        );
         return playcube; 
     }
-
 
     function GenerateEffectCubes(){
         let delay = 40;
@@ -53,10 +63,8 @@ export default function GameControlPoints(props){
             if(counter<effectsNum){
                 timerId = setTimeout(request, delay);
                 counter++;
-                //console.log(`randome cube counter = ${counter}`);
-                //delay+=counter*2;
-                setPlayCube1(getPlayCube('cube1'));        
-                setPlayCube2(getPlayCube('cube2'));        
+                setPlayCube1(getPlayCube());        
+                setPlayCube2(getPlayCube());        
             }else{
                 let elementCubes=document.querySelectorAll('.game-control-poins__play-cube');
                 elementCubes.forEach((cube, cubeNum)=>{
@@ -66,26 +74,25 @@ export default function GameControlPoints(props){
                 timerId='';
                 return timerId;
             }            
-        }, delay); 
-        
+        }, delay);         
     }
 
     return(
         <div className={`game-control-poins${props.hidden ? " game-control-poins--hidden": ""}`}>
-            <button className="game-control-poins__make-move"
+            <button className="game-control-poins__item"
                     /* onClick={setTimeout(RandomPlayCubes, 1000)} */
-                    onClick={GenerateEffectCubes}>
+                    >
                 Продати об'єкт
             </button>
-            <button className="game-control-poins__make-move"
+            <button className="game-control-poins__item game-control-poins__make-move "
                     /* onClick={setTimeout(RandomPlayCubes, 1000)} */
-                    onClick={GenerateEffectCubes}>
-                Зробити хід
+                    onClick={GenerateEffectCubes}
+                    >
+                <div className='game-control-poins__play-cubes'>
+                    {PlayCube1}
+                    {PlayCube2}
+                </div>
             </button>
-            <div className='game-control-poins__play-cubes'>
-                {PlayCube1}
-                {PlayCube2}
-            </div>
         </div>
     )
 }

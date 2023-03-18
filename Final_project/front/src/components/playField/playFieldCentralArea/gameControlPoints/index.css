@@ -7,10 +7,34 @@
     padding: 15px;
 }
 
-.game-control-poins__play-cubes {
-    display: flex;
-    gap: 5px;
+.game-control-poins--hidden {
+    visibility: hidden;
+}
+
+.game-control-poins__item {
     border: 3px solid white;
     border-radius: 10px;
     padding: 10px;
+    background-color: green;
+    color: rgb(214, 229, 124);
+    font-weight: 800;
+}
+
+.game-control-poins__item:hover {
+    cursor: pointer;
+    border-color: rgb(214, 229, 124);
+}
+
+.game-control-poins__play-cubes {
+    display: flex;
+    gap: 5px;
+}
+
+.game-control-poins__play-cube {
+    background-size: contain;
+    background-color: rgb(214, 229, 124);
+    width: 40px;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 5px;
 }
