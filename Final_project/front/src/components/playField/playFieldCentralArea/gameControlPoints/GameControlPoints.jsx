@@ -1,6 +1,7 @@
 import './index.css';
 
 import { useState } from "react";
+import {setCurrentPlayer} from '../../../../data/PlayersData';
 
 //import { useState } from "../../../../../public/img/cube-sides/";
 
@@ -56,6 +57,8 @@ export default function GameControlPoints(props){
     }
 
     function GenerateEffectCubes(){
+        let cube1Value=0;
+        let cube2Value=0;
         let delay = 40;
         let counter=0;
         let effectsNum=20;
@@ -69,12 +72,18 @@ export default function GameControlPoints(props){
                 let elementCubes=document.querySelectorAll('.game-control-poins__play-cube');
                 elementCubes.forEach((cube, cubeNum)=>{
                     console.log(`cube${cubeNum+1}= ${cube.getAttribute('cubevalue')}`);
+                    cubeNum===0 ? cube1Value=cube.getAttribute('cubevalue') : cube2Value=cube.getAttribute('cubevalue');
                 });
+
+                console.log(`cubes: ${cube1Value} ${cube2Value}`);
+                setCurrentPlayer(cube1Value%2===0 ? 0 : 1);
+                props.reRenderGameProcessInfo();
 
                 timerId='';
                 return timerId;
             }            
-        }, delay);         
+        }, delay);   
+        
     }
 
     //props.reRenderGameProcessInfo();

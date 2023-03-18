@@ -1,32 +1,36 @@
 import './index.css';
-//import { useState } from 'react';
+import { useState} from 'react';
 import GameProcessInfo from './gameProcessInfo/GameProcessInfo';
 import GameControlPoints from './gameControlPoints/GameControlPoints';
 import {bankSum} from '../../../data/GlobalData';
-import {getCurrentPlayer,setCurrentPlayer} from '../../../data/PlayersData';
+import {getCurrentPlayer/* ,setCurrentPlayer */} from '../../../data/PlayersData';
+
 
 
 export default function PlayFieldCentralArea(props){
-/*     const [ElementGameProcessInfo, setElementGameProcessInfo] = useState(getGameProcessInfo());
+const [ElementGameProcessInfo, setElementGameProcessInfo] = useState(getGameProcessInfo());
+
+    /* useEffect(() => {
+        getGameProcessInfo()
+    }, [PlayersData?.[0]]) */
 
     function getGameProcessInfo(){
-        return (
-            <GameProcessInfo 
-                hidden={true} 
-                gameBudget={bankSum}
-                сurrentPlayer={getCurrentPlayer()}
-            />);
+        return (<GameProcessInfo 
+            hidden={true} 
+            gameBudget={bankSum}
+            сurrentPlayer={getCurrentPlayer()}
+        />)
     }
+
+/*     console.log('ElementGameProcessInfo');*/
+    console.log(ElementGameProcessInfo);
+
 
     function renderGameProcessInfo(){
         setElementGameProcessInfo(getGameProcessInfo());
-    }; */
+    };    
 
-    
-
-    setCurrentPlayer(1);
-    let renderPlayerFunctionName = ()=>function renderPlayerFunction(){};
-
+    //setCurrentPlayer(1);   
 
     return(
         <div className='inner-area'>
@@ -34,15 +38,16 @@ export default function PlayFieldCentralArea(props){
                 hidden={true} 
                 gameBudget={bankSum}
                 сurrentPlayer={getCurrentPlayer()}
-                renderPlayerFunction={renderPlayerFunctionName}
                 />
-
-        {/* ElementGameProcessInfo */}
+        {/* {renderGameProcessInfo} */}
+        {/* {ElementGameProcessInfo} */}
+        {/* {i} */}
+        
 
         <GameControlPoints 
             hidden={true}
             reRenderPlayFieldSteps={props.reRenderPlayFieldSteps}
-            reRenderGameProcessInfo={renderPlayerFunctionName}
+            reRenderGameProcessInfo={renderGameProcessInfo}
             />
         </div>
     );
