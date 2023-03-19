@@ -67,20 +67,14 @@ export default function PlayField(){
                 styles={index===getCurrentPlayerPosition() ? 
                         {backgroundImage: `url(${item.faceBackground})`, 
                         backgroundSize:'contain', 
-                        //borderColor:`${getCurrentPlayerColor()}`,
                         boxShadow: shadovCurrentPlayerAndStep
                         } 
                         : 
                         {backgroundImage: `url(${item.faceBackground})`, 
                         backgroundSize:'contain'}
                     } 
-                /* ownerIndicatorColor={index===getCurrentPlayerPosition() ?
-                            `${getCurrentPlayerColor()}`
-                            :
-                            ''}  */  
-                /* ownerIndicatorColor={`red`} */
                 ownerIndicatorColor={item.ownerId !== '' ?
-                                    `${getPlayerColor(item.ownerId )}`
+                                    `${getPlayerColor(item.ownerId)}`
                                     :
                                     ''
                                 }
@@ -88,7 +82,6 @@ export default function PlayField(){
                 cardName={item.name} 
                 cardImage={item.img} 
                 cardPrice={item.price}  
-                cardOwner=""
             />
         ));
     }
