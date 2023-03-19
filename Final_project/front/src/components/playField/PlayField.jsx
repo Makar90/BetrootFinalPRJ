@@ -67,7 +67,8 @@ export default function PlayField(){
                 styles={index===getCurrentPlayerPosition() ? 
                         {backgroundImage: `url(${item.faceBackground})`, 
                         backgroundSize:'contain', 
-                        boxShadow: shadovCurrentPlayerAndStep
+                        boxShadow: shadovCurrentPlayerAndStep,
+                        zIndex:99
                         } 
                         : 
                         {backgroundImage: `url(${item.faceBackground})`, 

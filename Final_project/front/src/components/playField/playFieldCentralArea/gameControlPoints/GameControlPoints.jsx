@@ -3,6 +3,7 @@ import './index.css';
 import { useState } from "react";
 import {/* PlayersData, */
         setCurrentPlayer,
+        getCurrentPlayerPosition,
         setCurrentPlayerPosition} from '../../../../data/PlayersData';
 
 import {CardsData,
@@ -88,12 +89,16 @@ export default function GameControlPoints(props){
                 setCurrentPlayer(randposplayer);
                 props.reRenderGameProcessInfo_Players();
 
-                let randposcard=Math.floor(Math.random() * ((CardsData.length-1) - 0) + 0);
-                console.log(`randposcard ${randposcard+1}`);
-                setCurrentPlayerPosition(randposcard);
+                let newPlayFieldCardPosition=getCurrentPlayerPosition()+ +cube1Value+ +cube2Value//Math.floor(Math.random() * ((CardsData.length-1) - 0) + 0);
+                if(newPlayFieldCardPosition>=CardsData.length){
+                    newPlayFieldCardPosition= newPlayFieldCardPosition-CardsData.length;
+                    alert('bonus for full round!')
+                }
+                console.log(`newPlayFieldCardPosition ${newPlayFieldCardPosition+1}`);
+                setCurrentPlayerPosition(newPlayFieldCardPosition);
                 props.reRenderPlayFieldSteps();
 
-                setPlayFieldCardOwner(randposcard, randposplayer);
+                setPlayFieldCardOwner(newPlayFieldCardPosition, randposplayer);
 
                 timerId='';
                 return timerId;

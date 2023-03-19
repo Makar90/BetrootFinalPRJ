@@ -81,6 +81,8 @@
 
     border-radius: 5px;
     margin-top: auto;
+
+    font-size: 1.7vh;
 }
 
 .card-common__owner {
