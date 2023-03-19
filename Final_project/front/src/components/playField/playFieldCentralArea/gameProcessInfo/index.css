@@ -35,6 +35,7 @@
     align-items: center;
     gap: 5px;
     min-width: 10%;
+    /* box-shadow: 10px 5px 5px red; */
 }
 
 .game-process-info__player-name {

@@ -7,7 +7,10 @@ import {CardsData} from '../../data/CardsData';
 import StartGameSettings from '../startGameSettings/startGameSettings';
 import {/* PlayersData,  */
         getCurrentPlayerPosition, /* setCurrentPlayerPosition, */
-        getCurrentPlayerColor} from '../../data/PlayersData';
+        /* getCurrentPlayerColor,*/
+        getPlayerColor,
+        /* getCurrentPlayer */} from '../../data/PlayersData';
+import {shadovCurrentPlayerAndStep} from '../../data/GlobalData';
 
 //import imaga from '../../img/cards/front-media.jpg';
 
@@ -64,11 +67,23 @@ export default function PlayField(){
                 styles={index===getCurrentPlayerPosition() ? 
                         {backgroundImage: `url(${item.faceBackground})`, 
                         backgroundSize:'contain', 
-                        borderColor:`${getCurrentPlayerColor()}`} 
+                        //borderColor:`${getCurrentPlayerColor()}`,
+                        boxShadow: shadovCurrentPlayerAndStep
+                        } 
                         : 
                         {backgroundImage: `url(${item.faceBackground})`, 
                         backgroundSize:'contain'}
-                    }                                      
+                    } 
+                /* ownerIndicatorColor={index===getCurrentPlayerPosition() ?
+                            `${getCurrentPlayerColor()}`
+                            :
+                            ''}  */  
+                /* ownerIndicatorColor={`red`} */
+                ownerIndicatorColor={item.ownerId !== '' ?
+                                    `${getPlayerColor(item.ownerId )}`
+                                    :
+                                    ''
+                                }
                 cardType={item.type} 
                 cardName={item.name} 
                 cardImage={item.img} 

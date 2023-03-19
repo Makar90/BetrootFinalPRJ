@@ -1,5 +1,6 @@
 import './index.css';
 import {PlayersData} from '../../../../data/PlayersData';
+import {shadovCurrentPlayerAndStep} from '../../../../data/GlobalData';
 
 export default function gameProcessInfo (props){
 
@@ -10,7 +11,9 @@ export default function gameProcessInfo (props){
                 style={index=== props.сurrentPlayer ? 
                     {backgroundColor:item.playerColor, 
                     width:`${(100/PlayersData.length)-2}%`,
-                    borderColor:'rgb(214, 229, 124)'}
+                    /* borderColor:'rgb(214, 229, 124)', */
+                    boxShadow: shadovCurrentPlayerAndStep
+                    }
                     : 
                     {backgroundColor:item.playerColor, 
                     width:`${(100/PlayersData.length)-2}%`}}

@@ -1,11 +1,12 @@
 import './index.css';
 
 import { useState } from "react";
-import {PlayersData,
+import {/* PlayersData, */
         setCurrentPlayer,
         setCurrentPlayerPosition} from '../../../../data/PlayersData';
 
-import {CardsData} from '../../../../data/CardsData';
+import {CardsData,
+        setPlayFieldCardOwner} from '../../../../data/CardsData';
 
 //import { useState } from "../../../../../public/img/cube-sides/";
 
@@ -80,7 +81,8 @@ export default function GameControlPoints(props){
                 });
 
                 console.log(`cubes: ${cube1Value} ${cube2Value}`);
-                let randposplayer=Math.floor(Math.random() * ((PlayersData.length-1) - 0) + 0);
+
+                let randposplayer=0//Math.floor(Math.random() * ((PlayersData.length-1) - 0) + 0);
                 console.log(`randposplayer ${randposplayer+1}`);
                 //setCurrentPlayer(cube1Value%2===0 ? 0 : 1);
                 setCurrentPlayer(randposplayer);
@@ -90,6 +92,8 @@ export default function GameControlPoints(props){
                 console.log(`randposcard ${randposcard+1}`);
                 setCurrentPlayerPosition(randposcard);
                 props.reRenderPlayFieldSteps();
+
+                setPlayFieldCardOwner(randposcard, randposplayer);
 
                 timerId='';
                 return timerId;

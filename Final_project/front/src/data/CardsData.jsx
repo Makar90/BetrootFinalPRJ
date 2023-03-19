@@ -13,7 +13,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'     
     },
     {
         id:2,
@@ -30,7 +31,8 @@ export const CardsData=[
             900,
             1600,
             2700
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:3,
@@ -47,7 +49,8 @@ export const CardsData=[
             1000,
             2000,
             3500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:4,
@@ -63,7 +66,8 @@ export const CardsData=[
             200,
             600,
             1200
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:5,
@@ -77,7 +81,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:6,
@@ -94,7 +99,8 @@ export const CardsData=[
             600,
             1200,
             2000
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:7,
@@ -111,7 +117,8 @@ export const CardsData=[
             900,
             1600,
             2700
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:8,
@@ -125,7 +132,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:9,
@@ -142,7 +150,8 @@ export const CardsData=[
             2000,
             3000,
             4500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:10,
@@ -158,7 +167,8 @@ export const CardsData=[
             1200,
             2800,
             5500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:11,
@@ -172,7 +182,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:12,
@@ -188,7 +199,8 @@ export const CardsData=[
             200,
             600,
             1200
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:13,
@@ -205,7 +217,8 @@ export const CardsData=[
             900,
             1600,
             2700
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:14,
@@ -222,7 +235,8 @@ export const CardsData=[
             2000,
             3000,
             4500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:15,
@@ -236,7 +250,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:16,
@@ -253,7 +268,8 @@ export const CardsData=[
             900,
             1600,
             2700
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:17,
@@ -270,7 +286,8 @@ export const CardsData=[
             600,
             1200,
             2000
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:18,
@@ -284,7 +301,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'         
     },
     {
         id:19,
@@ -301,7 +319,8 @@ export const CardsData=[
             1000,
             2000,
             3500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:20,
@@ -317,7 +336,8 @@ export const CardsData=[
             1200,
             2800,
             5500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:21,
@@ -331,7 +351,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:22,
@@ -348,7 +369,8 @@ export const CardsData=[
             900,
             1600,
             2700
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:23,
@@ -365,7 +387,8 @@ export const CardsData=[
             2000,
             3000,
             4500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:24,
@@ -379,7 +402,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:25,
@@ -396,7 +420,8 @@ export const CardsData=[
             600,
             1200,
             2000
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:26,
@@ -413,7 +438,8 @@ export const CardsData=[
             900,
             1600,
             2700
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:27,
@@ -427,7 +453,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:28,
@@ -444,7 +471,8 @@ export const CardsData=[
             1000,
             2000,
             3500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:29,
@@ -458,7 +486,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:30,
@@ -474,7 +503,8 @@ export const CardsData=[
             200,
             600,
             1200
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:31,
@@ -488,7 +518,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:32,
@@ -504,7 +535,8 @@ export const CardsData=[
             1200,
             2800,
             5500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:33,
@@ -521,7 +553,8 @@ export const CardsData=[
             900,
             1600,
             2700
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:34,
@@ -538,7 +571,8 @@ export const CardsData=[
             1000,
             2000,
             3500
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:35,
@@ -552,7 +586,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:36,
@@ -569,7 +604,8 @@ export const CardsData=[
             900,
             1600,
             2700
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:37,
@@ -586,7 +622,8 @@ export const CardsData=[
             600,
             1200,
             2000
-        ]        
+        ],  
+        ownerId:''         
     },
     {
         id:38,
@@ -600,7 +637,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'        
     },
     {
         id:39,
@@ -614,7 +652,8 @@ export const CardsData=[
         priceSold:'',
         priceIncoming:[
             ''
-        ]        
+        ],  
+        ownerId:'prohibited'          
     },
     {
         id:40,
@@ -631,6 +670,16 @@ export const CardsData=[
             2000,
             3000,
             4500
-        ]        
+        ],  
+        ownerId:''         
     },
 ];
+
+
+export function setPlayFieldCardOwner(cardId, userId){
+    if(CardsData[cardId].ownerId!=='prohibited'){
+        CardsData[cardId].ownerId=userId;
+    }else{
+        console.log(`Спроба записати власника (${userId}) на обєкт (${cardId}) який не передбачає власника`)
+    }
+}

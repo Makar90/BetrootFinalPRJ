@@ -40,6 +40,17 @@ export function getCurrentPlayerColor(){
     return currentPlayerColor;
 }
 
+export function getPlayerColor(playerId){
+    let PlayerColor;
+    PlayersData.forEach((item, index)=>
+    {
+        if(index===playerId){
+            PlayerColor=item.playerColor
+        }
+    });
+    return PlayerColor;
+}
+
 export function getCurrentPlayer(){
     let currentPlayer;
     PlayersData.forEach((item,index)=>
