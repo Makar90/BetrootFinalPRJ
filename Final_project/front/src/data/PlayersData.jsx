@@ -5,7 +5,8 @@ export let PlayersData=[
         playerBudget:8000,
         playerPlayFieldPosition:0,
         playetCurrentMove:elementItem===0 ? true:false,
-        playerActive:true
+        playerActive:true,
+        playerSkipStep:false
     };  */ 
 ];
 
@@ -18,6 +19,17 @@ export function getCurrentPlayerPosition(){
         }
     });
     return +currentPlayerPosition;
+}
+
+export function getCurrentPlayerPName(){
+    let currentPlayerName;
+    PlayersData.forEach((item)=>
+    {
+        if(item.playetCurrentMove===true){
+            currentPlayerName=item.playerName;
+        }
+    });
+    return currentPlayerName;
 }
 
 export function setCurrentPlayerPosition(position){
@@ -62,7 +74,7 @@ export function getPlayerColor(playerId){
     return PlayerColor;
 }
 
-export function getCurrentPlayer(){
+export function getCurrentPlayerNum(){
     let currentPlayer;
     PlayersData.forEach((item,index)=>
     {
@@ -102,6 +114,36 @@ export function moneyStorneForPlayer(sum, playerId){
     {
         if(index===playerId){
             item.playerBudget=+item.playerBudget+ -sum;
+        }
+    });
+}
+
+/* export function getPlayerSkipStep(playerNum){
+    return PlayersData[playerNum].playetCurrentMove;
+} */
+export function getCurrentPlayerSkipStep(){
+    let playerSkipStep;
+    PlayersData.forEach((item)=>
+    {
+        if(item.playetCurrentMove===true){
+            playerSkipStep=item.playerSkipStep;
+        }
+    });
+    return playerSkipStep;
+}
+export function setCurrentPlayerSkipStep(){
+    PlayersData.forEach((item)=>
+    {
+        if(item.playetCurrentMove===true){
+            item.playerSkipStep=true;
+        }
+    });
+}
+export function setCurrentPlayerNotSkipStep(){
+    PlayersData.forEach((item)=>
+    {
+        if(item.playetCurrentMove===true){
+            item.playerSkipStep=false;
         }
     });
 }

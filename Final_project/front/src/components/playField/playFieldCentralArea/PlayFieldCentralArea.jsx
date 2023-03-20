@@ -3,7 +3,7 @@ import { useState} from 'react';
 import GameProcessInfo from './gameProcessInfo/GameProcessInfo';
 import GameControlPoints from './gameControlPoints/GameControlPoints';
 import {bankSum} from '../../../data/GlobalData';
-import {getCurrentPlayer/* ,setCurrentPlayer */} from '../../../data/PlayersData';
+import {getCurrentPlayerNum/* ,setCurrentPlayer */} from '../../../data/PlayersData';
 
 
 
@@ -18,7 +18,7 @@ const [ElementGameProcessInfo, setElementGameProcessInfo] = useState(getGameProc
         return (<GameProcessInfo 
             hidden={true} 
             gameBudget={bankSum}
-            сurrentPlayer={getCurrentPlayer()}
+            сurrentPlayer={getCurrentPlayerNum()}
         />)
     }
 
@@ -37,7 +37,7 @@ const [ElementGameProcessInfo, setElementGameProcessInfo] = useState(getGameProc
             <GameProcessInfo 
                 hidden={true} 
                 gameBudget={bankSum}
-                сurrentPlayer={getCurrentPlayer()}
+                сurrentPlayer={getCurrentPlayerNum()}
                 />
         {/* {renderGameProcessInfo} */}
         {/* {ElementGameProcessInfo} */}

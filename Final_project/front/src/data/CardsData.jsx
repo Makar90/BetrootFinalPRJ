@@ -376,7 +376,7 @@ export const CardsData=[
         id:23,
         faceBackground:'../img/cards/front-strategyObject.jpg',
         type:'Стратегічний об\'єкт',
-        name:'Запорізька АЕС-1',        
+        name:'Запорізька АЕС',        
         img:'../img/cards/icon-strategyObject-ZAES-1.png',
         price:3000,        
         
@@ -409,7 +409,7 @@ export const CardsData=[
         id:25,
         faceBackground:'../img/cards/front-humanitaryHelp.jpg',
         type:'Гуманітарна допомога',
-        name:'Північна',        
+        name:'Північна Україна',        
         img:'../img/cards/icon-humanitaryHelp-north.png',
         price:1000,        
         
@@ -777,6 +777,64 @@ export function checkChornobaivkaTypeCard(cardId){
     }else{
         return false;
     }    
+};
+
+/* function getRentPriceForAllCardsByTypeAndOwner(allCardsByTypeAndOwner){
+};
+
+function getAllCardsByTypeAndOwner(ownerId, cardType){
+}; */
+
+export function repriceForAllCardsByOneOwnerAndType(ownerId, cardNum){
+    let cardType=CardsData[cardNum].type;
+    console.log(`cardType`);
+    console.log(cardType);
+
+    let allCardsByOwnerAndType=[];
+    CardsData.forEach((item)=>{
+        if(item.ownerId===ownerId && item.type===cardType){
+            allCardsByOwnerAndType.push(item);
+        }
+    });
+    console.log(`allCardsByOwnerAndType`);
+    console.log(allCardsByOwnerAndType);
+
+    let rentLevel=allCardsByOwnerAndType.length-1;
+    console.log(`rentLevel`);
+    console.log(rentLevel);
+
+    let rentLevelPrice=CardsData[cardNum].priceIncoming[rentLevel];
+    console.log(`rentLevelPrice`);
+    console.log(rentLevelPrice);
+
+    allCardsByOwnerAndType.forEach((itemPattern)=>{
+        CardsData.forEach((itemGoal)=>{
+            if(itemPattern.id===itemGoal.id){
+                itemGoal.price=rentLevelPrice;
+            }
+        });
+    });
+    console.log(`CardsData`);
+    console.log(CardsData);
+};
+
+export function getRepricePrice_ForAllCardsByOneOwnerAndTypePlusOneObject(ownerId, cardNum){
+    let cardType=CardsData[cardNum].type;
+
+    let allCardsByOwnerAndType=[];
+    CardsData.forEach((item)=>{
+        if(item.ownerId===ownerId && item.type===cardType){
+            allCardsByOwnerAndType.push(item);
+        }
+    });
+
+    let rentLevel=allCardsByOwnerAndType.length-1;// ? allCardsByOwnerAndType.length-1 : 0;
+    console.log(`-----rentLevel`);
+    console.log(rentLevel);
+    let rentLevelPlusOne=rentLevel+1;
+
+    let rentLevelPrice=CardsData[cardNum].priceIncoming[rentLevelPlusOne];
+    return +rentLevelPrice;
 };
 
 

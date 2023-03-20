@@ -66,7 +66,8 @@ export default function StartGame(props){
                     playerBudget:playerMoney,
                     playerPlayFieldPosition:0,
                     playetCurrentMove:elementItem===0 ? true:false,
-                    playerActive:true
+                    playerActive:true,
+                    playerSkipStep:false
                 }; 
                 PlayersData.push(dataPlayer);            
                 }); 

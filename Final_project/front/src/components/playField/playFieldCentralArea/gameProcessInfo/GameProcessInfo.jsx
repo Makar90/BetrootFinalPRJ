@@ -19,7 +19,8 @@ export default function gameProcessInfo (props){
                     width:`${(100/PlayersData.length)-2}%`}}
                 >
             <h4 className="game-process-info__player-name">{item.playerName}</h4>
-            <h5 className="game-process-info__player-budget">{item.playerBudget}$</h5>
+            <h5 className="game-process-info__player-budget">{`${item.playerBudget}⛪️`}</h5>
+            <h5 className="game-process-info__player-budget">{`${item.playerBudget}$`}</h5>
         </div>
     ) 
     return(
