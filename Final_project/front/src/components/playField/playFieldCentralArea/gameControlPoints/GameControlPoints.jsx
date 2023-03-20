@@ -27,7 +27,10 @@ import {CardsData,
         checkChornobaivkaTypeCard
     } from '../../../../data/CardsData';
 
-import {bonusForFullPlayFieldRound} from '../../../../data/GlobalData';
+import {bonusForFullPlayFieldRound,
+        bankSum,
+        setBankSum
+    } from '../../../../data/GlobalData';
 //import { useState } from "../../../../../public/img/cube-sides/";
 
 
@@ -111,11 +114,12 @@ export default function GameControlPoints(props){
                
             //===Make animate move on play step / play field cards (go to playFieldCard - go to each with deley)
                 let playStepsCount=+cube1Value+ +cube2Value;
+                //let playStepsCount=3;
                 let newPlayFieldCardPosition=getCurrentPlayerPosition();
                 console.log(`newPlayFieldCardPosition start - ${newPlayFieldCardPosition}`) 
                 let bonusForFullPlayFieldRoundFlag=false;
                 let playStepsCounter=0;
-                let playStepsTimerDelay = 100;
+                let playStepsTimerDelay = 200;
                 let playStepsTimer = setTimeout(function request() {
                     if(playStepsCounter<playStepsCount){
                         playStepsCounter++;
@@ -224,6 +228,7 @@ export default function GameControlPoints(props){
                     if (checkZSUDonateTypeCard(newPlayFieldCardPosition)){
                         alert (`Ви донатите на ЗСУ - ${objectPrice}$ \nТак тримати!`);
                         moneyStorneForPlayer(objectPrice, getCurrentPlayer());
+                        setBankSum(bankSum+objectPrice);
                     }
                 //***********************************************
 
