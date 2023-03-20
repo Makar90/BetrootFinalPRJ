@@ -140,7 +140,7 @@ export default function GameControlPoints(props){
                             bonusForFullPlayFieldRoundFlag=false;
                             moneyAddForPlayer(bonusForFullPlayFieldRound,getCurrentPlayer());
                             props.reRenderGameProcessInfo_Players();
-                            alert(`Вітаємо! Ти отримав бонус за пройдене коло ${bonusForFullPlayFieldRound}$`);                              
+                            alert(`Вітаємо! Отримай бонус за пройдене коло ${bonusForFullPlayFieldRound}$`);                              
                         }
                 //***********************************************
                     console.log(`object ${newPlayFieldCardPosition}`);
@@ -187,7 +187,7 @@ export default function GameControlPoints(props){
                             }else{
                             //___auction object
                                 if(getCurrentPlayerBudget()-objectPrice<0 && agrymentToButObject === true){
-                                    alert ('Нажаль у вас недостатньо коштів на придбання цього об\'єкту \nБуде проведено аукціон');
+                                    alert ('Нажаль у тебе недостатньо коштів на придбання цього об\'єкту \nБуде проведено аукціон');
                                 }                                
                                 alert ('аукціон (in progress)');
                             //_______________________________________________
