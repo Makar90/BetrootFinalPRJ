@@ -1,7 +1,9 @@
 .game-process-info {
     width: 100%;
     background-color: rgb(128, 128, 128, 0.8);
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .game-process-info--hidden {
