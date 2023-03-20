@@ -59,7 +59,7 @@ export default function PlayField(){
         console.log(getCurrentPlayerPosition());  */
 
 
-        setplayFieldSteps(CardsData.map((item, index) =>    
+        setplayFieldSteps(CardsData?.map((item, index) =>    
             <PlayFieldStepsCard 
                 key={item.id} 
                 onclickFunction={undefined}

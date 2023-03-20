@@ -1,14 +1,33 @@
 import './index.css';
 
 import { useState } from "react";
-import {/* PlayersData, */
+import {PlayersData,
+        getCurrentPlayer,
         setCurrentPlayer,
         getCurrentPlayerPosition,
-        setCurrentPlayerPosition} from '../../../../data/PlayersData';
+        setCurrentPlayerPosition,
+        getCurrentPlayerBudget,
+        moneyAddForPlayer,
+        moneyStorneForPlayer
+    } from '../../../../data/PlayersData';
 
 import {CardsData,
-        setPlayFieldCardOwner} from '../../../../data/CardsData';
+        setPlayFieldCardOwner,
+        checkObjectOwner,
+        getObjectOwner,
+        getObjectPrice,
+        getObjectType,
+        getObjectName,
+        checkMunicipalTreasuresTypeCard,
+        checkChanceTypeCard,
+        checkBunkerTypeCard,
+        checkLoteryTypeCard,
+        checkZSUDonateTypeCard,
+        checkPrisonTypeCard,
+        checkChornobaivkaTypeCard
+    } from '../../../../data/CardsData';
 
+import {bonusForFullPlayFieldRound} from '../../../../data/GlobalData';
 //import { useState } from "../../../../../public/img/cube-sides/";
 
 
@@ -63,47 +82,183 @@ export default function GameControlPoints(props){
     }
 
     function GenerateEffectCubes(){
+        //Випропучкаєте хід бо попередній ви потрапили на пропуск ходу
+        //if(){}
+
         let cube1Value=0;
         let cube2Value=0;
-        let delay = 40;
-        let counter=0;
-        let effectsNum=20;
-        let timerId = setTimeout(function request() {
-            if(counter<effectsNum){
-                timerId = setTimeout(request, delay);
-                counter++;
+        
+        
+        let generateCubeEffectsCount=20;
+        let generateCubeEffectsCounter=0;
+        let generateCubeTimerDelay = 40;
+        let generateCubeTimer = setTimeout(function request() {
+            if(generateCubeEffectsCounter<generateCubeEffectsCount){
+                generateCubeTimer = setTimeout(request, generateCubeTimerDelay);
+                generateCubeEffectsCounter++;
                 setPlayCube1(getPlayCube());        
                 setPlayCube2(getPlayCube());        
             }else{
+
+            //===Memorize cubes value
                 let elementCubes=document.querySelectorAll('.game-control-poins__play-cube');
                 elementCubes.forEach((cube, cubeNum)=>{
                     console.log(`cube${cubeNum+1}= ${cube.getAttribute('cubevalue')}`);
                     cubeNum===0 ? cube1Value=cube.getAttribute('cubevalue') : cube2Value=cube.getAttribute('cubevalue');
                 });
-
                 console.log(`cubes: ${cube1Value} ${cube2Value}`);
+            //==========================================================================================================
+               
+            //===Make animate move on play step / play field cards (go to playFieldCard - go to each with deley)
+                let playStepsCount=+cube1Value+ +cube2Value;
+                let newPlayFieldCardPosition=getCurrentPlayerPosition();
+                console.log(`newPlayFieldCardPosition start - ${newPlayFieldCardPosition}`) 
+                let bonusForFullPlayFieldRoundFlag=false;
+                let playStepsCounter=0;
+                let playStepsTimerDelay = 100;
+                let playStepsTimer = setTimeout(function request() {
+                    if(playStepsCounter<playStepsCount){
+                        playStepsCounter++;
+                        playStepsTimer = setTimeout(request, playStepsTimerDelay);
+                        newPlayFieldCardPosition= newPlayFieldCardPosition+1;
+                        console.log(`newPlayFieldCardPosition before - ${newPlayFieldCardPosition}`)                         
+                        if(newPlayFieldCardPosition>=CardsData.length){
+                            newPlayFieldCardPosition= newPlayFieldCardPosition-CardsData.length;
+                            console.log(`newPlayFieldCardPosition check - ${newPlayFieldCardPosition}`)
+                            bonusForFullPlayFieldRoundFlag=true;
+                        }                    
+                        console.log(`newPlayFieldCardPosition after ${newPlayFieldCardPosition}`);
+                        setCurrentPlayerPosition(newPlayFieldCardPosition);
+                        props.reRenderPlayFieldSteps();
+            //========================================================================================================== 
+                    
+                    }else{
 
-                let randposplayer=0//Math.floor(Math.random() * ((PlayersData.length-1) - 0) + 0);
-                console.log(`randposplayer ${randposplayer+1}`);
-                //setCurrentPlayer(cube1Value%2===0 ? 0 : 1);
-                setCurrentPlayer(randposplayer);
-                props.reRenderGameProcessInfo_Players();
+            //===Do action on a focused step 
+                //***bonus for full play round
+                        if(bonusForFullPlayFieldRoundFlag /* &&  newPlayFieldCardPosition===0 /* 1 */){
+                            bonusForFullPlayFieldRoundFlag=false;
+                            moneyAddForPlayer(bonusForFullPlayFieldRound,getCurrentPlayer());
+                            props.reRenderGameProcessInfo_Players();
+                            alert(`Вітаємо! Ти отримав бонус за пройдене коло ${bonusForFullPlayFieldRound}$`);                              
+                        }
+                //***********************************************
+                    console.log(`object ${newPlayFieldCardPosition}`);
+                    let objectPrice= getObjectPrice(newPlayFieldCardPosition);
+                    let objectOwner=getObjectOwner(newPlayFieldCardPosition);
+                //***object owner (play field cards) is NOT empty and object owner not a 'owner prohibited'
+                        
+                        
+                        if(objectOwner!==9999999){
+                        //---is curent player owner object 
+                            console.log(`objectOwner ${objectOwner}`);
+                            console.log(`getCurrentPlayer() ${getCurrentPlayer()}`);
+                            console.log(CardsData);
+                            if(objectOwner===getCurrentPlayer()){
+                                alert ('Це твій об\'єкт\nСтягуй вартість за користування об\'єктом з інших гравців, що сюди потраплять\nНабувай у власність більше об\'єктів даного типу і збільшуй плату за їх користування для інших гравців');
+                        //-----------------------------------------------
+                            }else{
+                        //---IS NOT curent player owner object 
+                                moneyStorneForPlayer(objectPrice, getCurrentPlayer());
+                                moneyAddForPlayer(objectPrice,objectOwner);
+                                props.reRenderGameProcessInfo_Players(); 
+                                alert (`Це не твій об'єкт\nНеобхідно заплатити за його користування власнику ${objectPrice}$`);
+                            }
+                        //-----------------------------------------------
+                        }
 
-                let newPlayFieldCardPosition=getCurrentPlayerPosition()+ +cube1Value+ +cube2Value//Math.floor(Math.random() * ((CardsData.length-1) - 0) + 0);
-                if(newPlayFieldCardPosition>=CardsData.length){
-                    newPlayFieldCardPosition= newPlayFieldCardPosition-CardsData.length;
-                    alert('bonus for full round!')
-                }
-                console.log(`newPlayFieldCardPosition ${newPlayFieldCardPosition+1}`);
-                setCurrentPlayerPosition(newPlayFieldCardPosition);
-                props.reRenderPlayFieldSteps();
+                //***********************************************
+            
+                //***object owner (play field cards) is empty and object owner not a 'owner prohibited'
+                        
+                        if(checkObjectOwner(newPlayFieldCardPosition)===false){                            
+                        //---buy object or auction                            
+                            let ObjectType=getObjectType(newPlayFieldCardPosition);
+                            let ObjectName=getObjectName(newPlayFieldCardPosition);
+                            let agrymentToButObject=window.confirm(`Бажаєте придбати об'єкт: ${ObjectType} - [${ObjectName}]?\n\n Вартість: ${objectPrice}$`);
+                            if(getCurrentPlayerBudget()-objectPrice>=0 && agrymentToButObject === true){
+                            //___buy object
+                                console.log(`setPlayFieldCardOwner ${newPlayFieldCardPosition+1}; user: ${getCurrentPlayer()}`);
+                                moneyStorneForPlayer(objectPrice, getCurrentPlayer());
+                                setPlayFieldCardOwner(newPlayFieldCardPosition, getCurrentPlayer());
+                                props.reRenderPlayFieldSteps(); 
+                                props.reRenderGameProcessInfo_Players();  
+                            //_______________________________________________                          
+                            }else{
+                            //___auction object
+                                if(getCurrentPlayerBudget()-objectPrice<0 && agrymentToButObject === true){
+                                    alert ('Нажаль у вас недостатньо коштів на придбання цього об\'єкту \nБуде проведено аукціон');
+                                }                                
+                                alert ('аукціон (in progress)');
+                            //_______________________________________________
+                            }  
+                        //-----------------------------------------------
+                        } 
+                //***********************************************
 
-                setPlayFieldCardOwner(newPlayFieldCardPosition, randposplayer);
+                //***object is a "Municipal treasures" type (object owner is 'owner prohibited')                       
+                        if (checkMunicipalTreasuresTypeCard(newPlayFieldCardPosition)){
+                            alert ('Міська скарбниця (in progress)');
+                        }
+                //***********************************************
+                    
+                //***object is a "Chance" type  (object owner is 'owner prohibited')                          
+                    if (checkChanceTypeCard(newPlayFieldCardPosition)){
+                        alert ('Шанс (in progress)');
+                    }
+                //***********************************************
 
-                timerId='';
-                return timerId;
+                //***object is a "Bunker" type  (object owner is 'owner prohibited')                         
+                    if (checkBunkerTypeCard(newPlayFieldCardPosition)){
+                        alert ('Бункер (in progress)');
+                    }
+                //***********************************************
+
+                //***object is a "Lotery" type  (object owner is 'owner prohibited')                         
+                    if (checkLoteryTypeCard(newPlayFieldCardPosition)){
+                        alert ('Лотерея (in progress)');
+                    }
+                //***********************************************
+
+                //***object is a "Donate for ZSU" type  (object owner is 'owner prohibited')                         
+                    if (checkZSUDonateTypeCard(newPlayFieldCardPosition)){
+                        alert (`Ви донатите на ЗСУ - ${objectPrice}$ \nТак тримати!`);
+                        moneyStorneForPlayer(objectPrice, getCurrentPlayer());
+                    }
+                //***********************************************
+
+                //***object is a "Prison" type  (object owner is 'owner prohibited')                         
+                    if (checkPrisonTypeCard(newPlayFieldCardPosition)){
+                        alert ('В\'язниця (in progress)');
+                    }
+                //***********************************************
+
+                //***object is a "Step burn" type  (object owner is 'owner prohibited')                         
+                    if (checkChornobaivkaTypeCard(newPlayFieldCardPosition)){
+                        alert ('Чорнобаївка (in progress)');
+                    }
+                //***********************************************
+                
+                //***go to next player
+                    let nextPlayer = getCurrentPlayer()+1; //Math.floor(Math.random() * ((PlayersData.length-1) - 0) + 0);
+                    nextPlayer = nextPlayer < PlayersData.length ?  nextPlayer : 0;
+                    //nextPlayer=0;
+                    console.log(`nextPlayer ${nextPlayer+1}`);
+                    setCurrentPlayer(nextPlayer);
+                    props.reRenderGameProcessInfo_Players();
+                    props.reRenderPlayFieldSteps();
+                //***********************************************
+            //==========================================================================================================
+                        playStepsTimer='';
+                        return playStepsTimer;
+                    }            
+                }, playStepsTimerDelay);
+
+
+                generateCubeTimer='';
+                return generateCubeTimer;
             }            
-        }, delay);   
+        }, generateCubeTimerDelay);   
         
     }
 

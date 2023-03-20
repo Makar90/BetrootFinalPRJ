@@ -17,7 +17,7 @@ export function getCurrentPlayerPosition(){
             currentPlayerPosition=item.playerPlayFieldPosition
         }
     });
-    return currentPlayerPosition;
+    return +currentPlayerPosition;
 }
 
 export function setCurrentPlayerPosition(position){
@@ -40,6 +40,17 @@ export function getCurrentPlayerColor(){
     return currentPlayerColor;
 }
 
+export function getCurrentPlayerBudget(){
+    let currentPlayerBudget;
+    PlayersData.forEach((item)=>
+    {
+        if(item.playetCurrentMove===true){
+            currentPlayerBudget=item.playerBudget;
+        }
+    });
+    return +currentPlayerBudget;
+}
+
 export function getPlayerColor(playerId){
     let PlayerColor;
     PlayersData.forEach((item, index)=>
@@ -59,7 +70,7 @@ export function getCurrentPlayer(){
             currentPlayer=index;
         }
     });
-    return currentPlayer;
+    return +currentPlayer;
 }
 
 export function setCurrentPlayer(playerNum){
@@ -71,8 +82,26 @@ export function setCurrentPlayer(playerNum){
     });
     PlayersData.forEach((item, index)=>
     {
-        if(index===playerNum){
+        if(index=== +playerNum){
             item.playetCurrentMove=true;
+        }
+    });
+}
+
+export function moneyAddForPlayer(sum, playerId){
+    PlayersData.forEach((item, index)=>
+    {
+        if(index===playerId){
+            item.playerBudget=+item.playerBudget+ +sum;
+        }
+    });
+}
+
+export function moneyStorneForPlayer(sum, playerId){
+    PlayersData.forEach((item, index)=>
+    {
+        if(index===playerId){
+            item.playerBudget=+item.playerBudget+ -sum;
         }
     });
 }

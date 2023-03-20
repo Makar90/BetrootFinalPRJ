@@ -8,6 +8,8 @@ export let bankMinSum=100000;
 export let playerMoney=8000;
 export let playerMaxMoney=(bankMaxSum/2)/playersMaxNum;
 
+export let bonusForFullPlayFieldRound=2000;
+
 export let shadovCurrentPlayerAndStepColor='orange';
 export let shadovCurrentPlayerAndStep=`0px 0px 15px 15px ${shadovCurrentPlayerAndStepColor}`;
 

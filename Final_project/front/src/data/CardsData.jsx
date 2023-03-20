@@ -487,7 +487,7 @@ export const CardsData=[
         priceIncoming:[
             ''
         ],  
-        ownerId:''         
+        ownerId:'prohibited'          
     },
     {
         id:30,
@@ -678,8 +678,111 @@ export const CardsData=[
 
 export function setPlayFieldCardOwner(cardId, userId){
     if(CardsData[cardId].ownerId!=='prohibited'){
-        CardsData[cardId].ownerId=userId;
+        CardsData[cardId].ownerId= +userId;
     }else{
         console.log(`Спроба записати власника (${userId}) на обєкт (${cardId}) який не передбачає власника`)
     }
 }
+
+export function getObjectOwner(cardId){
+    if(checkObjectOwner(cardId)===true && checkObjectOwnerProhibited(cardId)!==true){
+        let ownerId=CardsData[cardId].ownerId;
+        console.log(`ownerId FUNCTION ${ownerId}`)
+        return +ownerId;
+    }else{
+        let unrealOwner=9999999;
+        return +unrealOwner;
+    }
+};
+
+export function checkObjectOwnerProhibited(cardId){
+    if( CardsData[cardId].ownerId==='prohibited'){
+        return true;
+    }else{
+        return false;
+    }
+};
+
+export function checkObjectOwner(cardId){
+    if(CardsData[cardId].ownerId===''){
+        return false;
+    }else{
+        return true;
+    }
+};
+
+export function getObjectPrice(cardId){
+    return +CardsData[cardId].price;
+};
+
+export function getObjectType(cardId){
+    return CardsData[cardId].type;
+};
+
+export function getObjectName(cardId){
+    return CardsData[cardId].name;
+};
+
+export function checkMunicipalTreasuresTypeCard(cardId){
+    if(CardsData[cardId].type === 'Міська скарбниця'){
+        return true;
+    }else{
+        return false;
+    }    
+};
+
+export function checkChanceTypeCard(cardId){
+    if(CardsData[cardId].type === 'Шанс'){
+        return true;
+    }else{
+        return false;
+    }    
+};
+
+export function checkBunkerTypeCard(cardId){
+    if(CardsData[cardId].type === 'Бомбосховище'){
+        return true;
+    }else{
+        return false;
+    }    
+};
+
+export function checkLoteryTypeCard(cardId){
+    if(CardsData[cardId].type === 'Лотерея'){
+        return true;
+    }else{
+        return false;
+    }    
+};
+
+export function checkZSUDonateTypeCard(cardId){
+    if(CardsData[cardId].type === 'Донат на ЗСУ'){
+        return true;
+    }else{
+        return false;
+    }    
+};
+
+export function checkPrisonTypeCard(cardId){
+    if(CardsData[cardId].type === 'В\'язниця'){
+        return true;
+    }else{
+        return false;
+    }    
+};
+
+export function checkChornobaivkaTypeCard(cardId){
+    if(CardsData[cardId].type === 'Чорнобаївка'){
+        return true;
+    }else{
+        return false;
+    }    
+};
+
+
+
+
+
+
+
+
