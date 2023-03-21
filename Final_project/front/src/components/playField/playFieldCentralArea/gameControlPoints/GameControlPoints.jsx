@@ -5,14 +5,17 @@ import {PlayersData,
         getCurrentPlayerNum,
         setCurrentPlayer,
         getCurrentPlayerPName,
+        getPlayerPName,
         getCurrentPlayerPosition,
         setCurrentPlayerPosition,
         getCurrentPlayerBudget,
         moneyAddForPlayer,
         moneyStorneForPlayer,
         getCurrentPlayerSkipStep,
-        setCurrentPlayerSkipStep,
-        setCurrentPlayerNotSkipStep
+        setCurrentPlayerSkipStepPlusNum,
+        setCurrentPlayerSkipStepMinusNum,
+        setCurrentPlayerRemoteStepPosibility,
+        getCurrentPlayerRemoteStepPosibility
     } from '../../../../data/PlayersData';
 
 import {CardsData,
@@ -37,7 +40,16 @@ import {bonusForFullPlayFieldRound,
         bankSum,
         setBankSum
     } from '../../../../data/GlobalData';
+
+
+import {TestStepsScenario, GameRound, GameRoundIncrement} from '../../../../data/TestData';
+
 //import { useState } from "../../../../../public/img/cube-sides/";
+
+
+
+
+
 
 
 export default function GameControlPoints(props){
@@ -91,13 +103,43 @@ export default function GameControlPoints(props){
     }
 
     function GenerateEffectCubes(){
-        //Випропучкаєте хід бо попередній ви потрапили на пропуск ходу
-        //if(){}
+        function GoToNextPlayerStep (){
+            //***go to next player
+                let nextPlayer = getCurrentPlayerNum()+1; //Math.floor(Math.random() * ((PlayersData.length-1) - 0) + 0);
+                //nextPlayer = nextPlayer < PlayersData.length ?  nextPlayer : 0;
+                if(nextPlayer >= PlayersData.length){
+                    nextPlayer=0;
+                    GameRoundIncrement();
+                }
+                //nextPlayer=0;
+                setCurrentPlayer(nextPlayer);
+                props.reRenderGameProcessInfo_Players();
+                props.reRenderPlayFieldSteps();   
+            //***********************************************
+        };
+        function checkSkipStepForPlayer(){
+            if(getCurrentPlayerSkipStep()){ 
+                setCurrentPlayerSkipStepMinusNum(1); 
+                if(getCurrentPlayerSkipStep()>=1){
+                    alert (`${getCurrentPlayerPName()}, нажаль даний хід та ще ${getCurrentPlayerSkipStep()} доведеться пропустити :(\nАле не здавайся! :)`);
+                } else{                                
+                    alert(`${getCurrentPlayerPName()}, нажаль даний хід доведеться пропустити :(`);
+                }                                                
+                GoToNextPlayerStep ();
+                return true;                              
+            }else{
+                return false;
+            }
+        }
+        //Ви пропучкаєте хід бо попередній ви потрапили на пропуск ходу
+        if (checkSkipStepForPlayer()){
+            return;
+        } 
+
+
 
         let cube1Value=0;
         let cube2Value=0;
-        
-        
         let generateCubeEffectsCount=20;
         let generateCubeEffectsCounter=0;
         let generateCubeTimerDelay = 40;
@@ -118,11 +160,25 @@ export default function GameControlPoints(props){
                 console.log(`cubes: ${cube1Value} ${cube2Value}`);
             //==========================================================================================================
                
-            //===Make animate move on play step / play field cards (go to playFieldCard - go to each with deley)
+                //===Make animate move on play step / play field cards (go to playFieldCard - go to each with deley)
                 let playStepsCount=+cube1Value+ +cube2Value;
-                //playStepsCount=38;
+                
+                //Emulator
+                if(TestStepsScenario[getCurrentPlayerNum()][GameRound]){
+                    playStepsCount=TestStepsScenario[getCurrentPlayerNum()][GameRound];
+                    console.log(TestStepsScenario[getCurrentPlayerNum()][GameRound]);
+                }
+                
+                //playStepsCount=34;
+                //10 -bunker
+                //28 - ZSU donat
+                //30 -prison
+                //38 -chornobaivka
+                
+                
+                
                 let newPlayFieldCardPosition=getCurrentPlayerPosition();
-                console.log(`newPlayFieldCardPosition start - ${newPlayFieldCardPosition}`) 
+                let oldPlayFieldCardPosition=getCurrentPlayerPosition();
                 let bonusForFullPlayFieldRoundFlag=false;
                 let playStepsCounter=0;
                 let playStepsTimerDelay = 100;
@@ -130,34 +186,43 @@ export default function GameControlPoints(props){
                     if(playStepsCounter<playStepsCount){
                         playStepsCounter++;
                         playStepsTimer = setTimeout(request, playStepsTimerDelay);
-                        newPlayFieldCardPosition= newPlayFieldCardPosition+1;
-                        console.log(`newPlayFieldCardPosition before - ${newPlayFieldCardPosition}`)                         
+                        newPlayFieldCardPosition= newPlayFieldCardPosition+1;                         
                         if(newPlayFieldCardPosition>=CardsData.length){
                             newPlayFieldCardPosition= newPlayFieldCardPosition-CardsData.length;
                             console.log(`newPlayFieldCardPosition check - ${newPlayFieldCardPosition}`)
                             bonusForFullPlayFieldRoundFlag=true;
-                        }                    
-                        console.log(`newPlayFieldCardPosition after ${newPlayFieldCardPosition}`);
+                        } 
                         setCurrentPlayerPosition(newPlayFieldCardPosition);
                         props.reRenderPlayFieldSteps();
                         props.reRenderGameProcessInfo_Players();
-            //========================================================================================================== 
+                //========================================================================================================== 
                     
                     }else{
-
-                    //===Do action on a focused step 
-                        
+                        //===Do action on a focused step 
+                        function checkAndPromoteRemoteStepPosibility(){
+                            if(getCurrentPlayerRemoteStepPosibility()){
+                                setCurrentPlayerRemoteStepPosibility(false);
+                                if(window.confirm(`${getCurrentPlayerPName()}, так як ти був у бомбосховищі це дає змогу тобі відмовитись від цього ходу і повернутись на початкову позицію\n\nВідмовитись?`)){                                    
+                                    setCurrentPlayerPosition(oldPlayFieldCardPosition);
+                                    bonusForFullPlayFieldRoundFlag=false;
+                                    GoToNextPlayerStep ();
+                                    return true;
+                                }else{
+                                    return false;
+                                }
+                            }
+                        }                        
                         function BonusforRound(bonusForFullPlayFieldRoundFlag){
                             //***bonus for full play round
                             if(bonusForFullPlayFieldRoundFlag /* &&  newPlayFieldCardPosition===0 /* 1 */){
                                 bonusForFullPlayFieldRoundFlag=false;
                                 moneyAddForPlayer(bonusForFullPlayFieldRound,getCurrentPlayerNum());
+                                setBankSum(+bankSum- +bonusForFullPlayFieldRound);
                                 props.reRenderGameProcessInfo_Players();
                                 alert(`Вітаємо! Тобі прилетів бонус за пройдене коло: ${bonusForFullPlayFieldRound}$`);                              
                             }
                             //***********************************************
                         };
-
                         function BuyNotEmptyOwnerObject(objectOwner, objectPrice){
                             //***object owner (play field cards) is NOT empty and object owner not a 'owner prohibited'
                             if(objectOwner!==9999999){
@@ -173,7 +238,7 @@ export default function GameControlPoints(props){
                                     moneyStorneForPlayer(objectPrice, getCurrentPlayerNum());
                                     moneyAddForPlayer(objectPrice,objectOwner);
                                     props.reRenderGameProcessInfo_Players(); 
-                                    alert (`Цей об'єкт має власника\nНеобхідно заплатити за його оренду: ${objectPrice}$`);
+                                    alert (`Цей об'єкт має власника: ${getPlayerPName(objectOwner)}\nНеобхідно заплатити орендну плату за перебування в ньому: ${objectPrice}$`);
                                 }
                                 //-----------------------------------------------
                             }
@@ -210,8 +275,7 @@ export default function GameControlPoints(props){
                                 //-----------------------------------------------
                             }
                             //***********************************************
-                        };
-                        
+                        };  
 
                         function ifMunicipalTreasuresTypeCardStep(){
                             //***object is a "Municipal treasures" type (object owner is 'owner prohibited')                       
@@ -230,7 +294,8 @@ export default function GameControlPoints(props){
                         function ifBunkerTypeCardStep(){
                             //***object is a "Bunker" type  (object owner is 'owner prohibited')                         
                             if (checkBunkerTypeCard(newPlayFieldCardPosition)){
-                                alert ('Бункер (in progress)');
+                                setCurrentPlayerRemoteStepPosibility(true);
+                                alert (`${getCurrentPlayerPName()}, ти потрапив до бомбосховища!\nЦе дає тобі змогу відмовитись від наступного ходу зрозумівши, що зіграна комбінація кубиків тебе не влаштовує\n\nНаприклад ти потрапляєш на об'єкт з орендою, а натомість хочеш зберегти кошти`);
                             }
                             //***********************************************
                         };
@@ -244,60 +309,43 @@ export default function GameControlPoints(props){
                         function ifZSUDonateTypeCardStep(){
                             //***object is a "Donate for ZSU" type  (object owner is 'owner prohibited')                         
                             if (checkZSUDonateTypeCard(newPlayFieldCardPosition)){
-                                alert (`ти донатиш на ЗСУ - ${objectPrice}$ \nТак тримати!`);
+                                alert (`${getCurrentPlayerPName()}, ти донатиш на ЗСУ - ${objectPrice}$ \nТак тримати!`);
                                 moneyStorneForPlayer(objectPrice, getCurrentPlayerNum());
-                                setBankSum(bankSum+objectPrice);
+                                setBankSum(+bankSum+objectPrice);
                             }
                             //***********************************************
                         };
                         function ifPrisonTypeCardStep(){
                             //***object is a "Prison" type  (object owner is 'owner prohibited')                         
                             if (checkPrisonTypeCard(newPlayFieldCardPosition)){
-                                alert ('В\'язниця (in progress)');
+                                if(window.confirm(`${getCurrentPlayerPName()}, ти потрапив на об'єкт - "В'язниця"!\nНажаль, наступні два ходи доведеться пропустити:(\nАбо ти можеш внести заставу і продовжувати гру\n\nВнести заставу: ${objectPrice}$?`)){
+                                    moneyStorneForPlayer(objectPrice, getCurrentPlayerNum());
+                                    setBankSum(+bankSum+objectPrice);
+                                    alert(`${getCurrentPlayerPName()}, ти вніс заставу: ${objectPrice}$\nПропускати 2 наступні ходи не доведеться`);
+                                }else{                                            
+                                    setCurrentPlayerSkipStepPlusNum(2);
+                                    alert(`${getCurrentPlayerPName()}, ти не вносив заставу: ${objectPrice}$\nДоведеться пропустити 2 наступні ходи`);
+                                }
                             }
                             //***********************************************
                         };
                         function ifChornobaivkaTypeStep(){        
                             //***object is a "Step burn" type  (object owner is 'owner prohibited')                         
                             if (checkChornobaivkaTypeCard(newPlayFieldCardPosition)){
-                                SkipNextStepForPlayer();
+                                alert (`${getCurrentPlayerPName()}, нажаль наступний хід доведеться пропустити :(\nАле не здавайся! :)`);
+                                setCurrentPlayerSkipStepPlusNum(1);
                             }
                             //***********************************************
-                        };                        
-
-                        function GoToNextPlayerStep (){
-                            //***go to next player
-                                let nextPlayer = getCurrentPlayerNum()+1; //Math.floor(Math.random() * ((PlayersData.length-1) - 0) + 0);
-                                nextPlayer = nextPlayer < PlayersData.length ?  nextPlayer : 0;
-                                //nextPlayer=0;
-                                setCurrentPlayer(nextPlayer);
-                                props.reRenderGameProcessInfo_Players();
-                                props.reRenderPlayFieldSteps();
-
-                                if(getCurrentPlayerSkipStep()){                                    
-                                    alert(`${getCurrentPlayerPName()}, даний хід доведеться пропустити :(`);
-                                    setCurrentPlayerNotSkipStep();
-                                    GoToNextPlayerStep ();                                    
-                                }
-                                props.reRenderGameProcessInfo_Players();
-                                props.reRenderPlayFieldSteps();   
-                            //***********************************************
-                        };
-
-
-
+                        }; 
 
                         function objectAuction(ObjectType, ObjectName, objectPrice){
                             alert (`аукціон (in progress)\n ${ObjectType} - [${ObjectName}]: ${objectPrice}`);
                         };
-                        function SkipNextStepForPlayer(){
-                            alert (`${getCurrentPlayerPName()}, нажаль наступний хід ти пропускаєш :(\n Але не здавайся! :)`);
-                            setCurrentPlayerSkipStep();
+                           
+
+                        if(checkAndPromoteRemoteStepPosibility()){ 
+                            return;
                         }
-                        
-
-
-
                         BonusforRound(bonusForFullPlayFieldRoundFlag);
                         let objectPrice= getObjectPrice(newPlayFieldCardPosition);
                         let objectOwner=getObjectOwner(newPlayFieldCardPosition);
@@ -313,7 +361,7 @@ export default function GameControlPoints(props){
                         ifChornobaivkaTypeStep();
                         
                         GoToNextPlayerStep ();                
-                    //==========================================================================================================
+                        //==========================================================================================================
                         playStepsTimer='';
                         return playStepsTimer;
                     }            

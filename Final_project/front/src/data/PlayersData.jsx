@@ -6,7 +6,8 @@ export let PlayersData=[
         playerPlayFieldPosition:0,
         playetCurrentMove:elementItem===0 ? true:false,
         playerActive:true,
-        playerSkipStep:false
+        playerSkipStep:0,
+        remoteStepPosibility: false
     };  */ 
 ];
 
@@ -19,7 +20,7 @@ export function getCurrentPlayerPosition(){
         }
     });
     return +currentPlayerPosition;
-}
+};
 
 export function getCurrentPlayerPName(){
     let currentPlayerName;
@@ -30,7 +31,18 @@ export function getCurrentPlayerPName(){
         }
     });
     return currentPlayerName;
-}
+};
+
+export function getPlayerPName(playerNum){
+    let PlayerName;
+    PlayersData.forEach((item, index)=>
+    {
+        if(index===playerNum){
+            PlayerName=item.playerName;
+        }
+    });
+    return PlayerName;
+};
 
 export function setCurrentPlayerPosition(position){
     PlayersData.forEach((item)=>
@@ -39,7 +51,7 @@ export function setCurrentPlayerPosition(position){
             item.playerPlayFieldPosition=position;
         }
     });
-}
+};
 
 export function getCurrentPlayerColor(){
     let currentPlayerColor;
@@ -50,7 +62,7 @@ export function getCurrentPlayerColor(){
         }
     });
     return currentPlayerColor;
-}
+};
 
 export function getCurrentPlayerBudget(){
     let currentPlayerBudget;
@@ -61,7 +73,7 @@ export function getCurrentPlayerBudget(){
         }
     });
     return +currentPlayerBudget;
-}
+};
 
 export function getPlayerColor(playerId){
     let PlayerColor;
@@ -72,7 +84,7 @@ export function getPlayerColor(playerId){
         }
     });
     return PlayerColor;
-}
+};
 
 export function getCurrentPlayerNum(){
     let currentPlayer;
@@ -83,7 +95,7 @@ export function getCurrentPlayerNum(){
         }
     });
     return +currentPlayer;
-}
+};
 
 export function setCurrentPlayer(playerNum){
     PlayersData.forEach((item)=>
@@ -98,7 +110,7 @@ export function setCurrentPlayer(playerNum){
             item.playetCurrentMove=true;
         }
     });
-}
+};
 
 export function moneyAddForPlayer(sum, playerId){
     PlayersData.forEach((item, index)=>
@@ -107,7 +119,7 @@ export function moneyAddForPlayer(sum, playerId){
             item.playerBudget=+item.playerBudget+ +sum;
         }
     });
-}
+};
 
 export function moneyStorneForPlayer(sum, playerId){
     PlayersData.forEach((item, index)=>
@@ -116,11 +128,8 @@ export function moneyStorneForPlayer(sum, playerId){
             item.playerBudget=+item.playerBudget+ -sum;
         }
     });
-}
+};
 
-/* export function getPlayerSkipStep(playerNum){
-    return PlayersData[playerNum].playetCurrentMove;
-} */
 export function getCurrentPlayerSkipStep(){
     let playerSkipStep;
     PlayersData.forEach((item)=>
@@ -129,24 +138,46 @@ export function getCurrentPlayerSkipStep(){
             playerSkipStep=item.playerSkipStep;
         }
     });
-    return playerSkipStep;
-}
-export function setCurrentPlayerSkipStep(){
+    return +playerSkipStep;
+};
+
+export function setCurrentPlayerSkipStepPlusNum(stepsCount){
     PlayersData.forEach((item)=>
     {
         if(item.playetCurrentMove===true){
-            item.playerSkipStep=true;
+            item.playerSkipStep=item.playerSkipStep+ +stepsCount;
         }
     });
-}
-export function setCurrentPlayerNotSkipStep(){
+};
+
+export function setCurrentPlayerSkipStepMinusNum(stepsCount){
     PlayersData.forEach((item)=>
     {
         if(item.playetCurrentMove===true){
-            item.playerSkipStep=false;
+            item.playerSkipStep=item.playerSkipStep - +stepsCount;
         }
     });
-}
+};
+
+export function getCurrentPlayerRemoteStepPosibility(){
+    let CurrentPlayerRemoteStepPosibility;
+    PlayersData.forEach((item)=>
+    {
+        if(item.playetCurrentMove===true){
+            CurrentPlayerRemoteStepPosibility=item.remoteStepPosibility;
+        }
+    });
+    return CurrentPlayerRemoteStepPosibility;
+};
+
+export function setCurrentPlayerRemoteStepPosibility(flag){
+    PlayersData.forEach((item)=>
+    {
+        if(item.playetCurrentMove===true){
+            item.remoteStepPosibility=flag;
+        }
+    });
+};
 
 
 

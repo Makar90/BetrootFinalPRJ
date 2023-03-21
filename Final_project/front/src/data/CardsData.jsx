@@ -1,4 +1,5 @@
 //import '../img/cards/front-media.jpg'
+import {prisonPrice} from './GlobalData';
 
 export const CardsData=[
     {
@@ -512,7 +513,7 @@ export const CardsData=[
         type:'В\'язниця',
         name:'',        
         img:'../img/cards/icon-cornersCard-prison.png',
-        price:'',        
+        price: prisonPrice,        
         
         backBackground:'../img/cards/back.jpg',
         priceSold:'',
@@ -836,6 +837,29 @@ export function getRepricePrice_ForAllCardsByOneOwnerAndTypePlusOneObject(ownerI
     let rentLevelPrice=CardsData[cardNum].priceIncoming[rentLevelPlusOne];
     return +rentLevelPrice;
 };
+
+
+
+
+
+function AllObjectsByOwner(ownerId){
+    let allObjectsByOwner=[];
+    CardsData.forEach((item)=>{
+        if(item.ownerId===ownerId){
+            allObjectsByOwner.push(item);
+        }
+    });
+    return allObjectsByOwner;
+}
+
+export function getPriceSoldSumFromAllObjectsByOwner(ownerId){
+    let allObjectsByOwner= AllObjectsByOwner(ownerId);
+    let sum = 0;
+    allObjectsByOwner.forEach((item)=>{
+        sum =sum+ +item.priceSold;
+    });
+    return +sum;
+}
 
 
 

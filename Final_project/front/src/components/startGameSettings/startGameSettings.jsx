@@ -67,7 +67,8 @@ export default function StartGame(props){
                     playerPlayFieldPosition:0,
                     playetCurrentMove:elementItem===0 ? true:false,
                     playerActive:true,
-                    playerSkipStep:false
+                    playerSkipStep:0,
+                    remoteStepPosibility: false
                 }; 
                 PlayersData.push(dataPlayer);            
                 }); 
