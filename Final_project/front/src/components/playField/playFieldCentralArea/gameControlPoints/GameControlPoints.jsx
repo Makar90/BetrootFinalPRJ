@@ -42,7 +42,7 @@ import {bonusForFullPlayFieldRound,
     } from '../../../../data/GlobalData';
 
 
-import {TestStepsScenario, GameRound, GameRoundIncrement} from '../../../../data/TestData';
+import {/* TestStepsScenario, GameRound, */ GameRoundIncrement} from '../../../../data/TestData';
 
 //import { useState } from "../../../../../public/img/cube-sides/";
 
@@ -164,10 +164,14 @@ export default function GameControlPoints(props){
                 let playStepsCount=+cube1Value+ +cube2Value;
                 
                 //Emulator
-                if(TestStepsScenario[getCurrentPlayerNum()][GameRound]){
-                    playStepsCount=TestStepsScenario[getCurrentPlayerNum()][GameRound];
-                    console.log(TestStepsScenario[getCurrentPlayerNum()][GameRound]);
-                }
+                    /* if(TestStepsScenario[getCurrentPlayerNum()][GameRound]){
+                        playStepsCount=TestStepsScenario[getCurrentPlayerNum()][GameRound];
+                        console.log(TestStepsScenario[getCurrentPlayerNum()][GameRound]);
+                    }
+                    if(GameRound===11 && getCurrentPlayerNum()===1){
+                        moneyStorneForPlayer(7000, getCurrentPlayerNum());
+                    } */
+                //-----------------------
                 
                 //playStepsCount=34;
                 //10 -bunker
